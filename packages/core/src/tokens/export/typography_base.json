@@ -1,0 +1,52 @@
+{
+  "Type scale 2": {
+    "value": 40,
+    "type": "number",
+    "prefix": "typography_base"
+  },
+  "Type scale 1": {
+    "value": 64,
+    "type": "number",
+    "prefix": "typography_base"
+  },
+  "Type scale 3": {
+    "value": 32,
+    "type": "number",
+    "prefix": "typography_base"
+  },
+  "Type scale 4": {
+    "value": 24,
+    "type": "number",
+    "prefix": "typography_base"
+  },
+  "Type scale 5": {
+    "value": 20,
+    "type": "number",
+    "prefix": "typography_base"
+  },
+  "Type scale 6": {
+    "value": 16,
+    "type": "number",
+    "prefix": "typography_base"
+  },
+  "Type scale 7": {
+    "value": 14,
+    "type": "number",
+    "prefix": "typography_base"
+  },
+  "Type scale 8": {
+    "value": 12,
+    "type": "number",
+    "prefix": "typography_base"
+  },
+  "Type scale 9": {
+    "value": 11,
+    "type": "number",
+    "prefix": "typography_base"
+  },
+  "Type scale 10": {
+    "value": 10,
+    "type": "number",
+    "prefix": "typography_base"
+  }
+}

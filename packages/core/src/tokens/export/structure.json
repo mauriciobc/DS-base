@@ -1,0 +1,190 @@
+{
+  "large": {
+    "spacing": {
+      "spacing-xxs": {
+        "value": 2,
+        "type": "number",
+        "prefix": "structure"
+      },
+      "spacing-xs": {
+        "value": 4,
+        "type": "number",
+        "prefix": "structure"
+      },
+      "spacing-sm": {
+        "value": 8,
+        "type": "number",
+        "prefix": "structure"
+      },
+      "spacing-rg": {
+        "value": 12,
+        "type": "number",
+        "prefix": "structure"
+      },
+      "spacing-md": {
+        "value": 16,
+        "type": "number",
+        "prefix": "structure"
+      },
+      "spacing-lg": {
+        "value": 24,
+        "type": "number",
+        "prefix": "structure"
+      },
+      "spacing-xl": {
+        "value": 32,
+        "type": "number",
+        "prefix": "structure"
+      },
+      "spacing-xxl": {
+        "value": 48,
+        "type": "number",
+        "prefix": "structure"
+      },
+      "spacing-xxxl": {
+        "value": 56,
+        "type": "number",
+        "prefix": "structure"
+      }
+    },
+    "radius-no": {
+      "value": 0,
+      "type": "number",
+      "prefix": "structure"
+    },
+    "radius-xxs": {
+      "value": 2,
+      "type": "number",
+      "prefix": "structure"
+    },
+    "radius-xs": {
+      "value": 4,
+      "type": "number",
+      "prefix": "structure"
+    },
+    "radius-sm": {
+      "value": 8,
+      "type": "number",
+      "prefix": "structure"
+    },
+    "radius-md": {
+      "value": 12,
+      "type": "number",
+      "prefix": "structure"
+    },
+    "radius-lg": {
+      "value": 16,
+      "type": "number",
+      "prefix": "structure"
+    },
+    "radius-xl": {
+      "value": 24,
+      "type": "number",
+      "prefix": "structure"
+    },
+    "radius-xxl": {
+      "value": 32,
+      "type": "number",
+      "prefix": "structure"
+    },
+    "radius-round": {
+      "value": 1024,
+      "type": "number",
+      "prefix": "structure"
+    }
+  },
+  "slim": {
+    "spacing": {
+      "spacing-xxs": {
+        "value": 3,
+        "type": "number",
+        "prefix": "structure"
+      },
+      "spacing-xs": {
+        "value": 6,
+        "type": "number",
+        "prefix": "structure"
+      },
+      "spacing-sm": {
+        "value": 7,
+        "type": "number",
+        "prefix": "structure"
+      },
+      "spacing-rg": {
+        "value": 9,
+        "type": "number",
+        "prefix": "structure"
+      },
+      "spacing-md": {
+        "value": 10,
+        "type": "number",
+        "prefix": "structure"
+      },
+      "spacing-lg": {
+        "value": 14,
+        "type": "number",
+        "prefix": "structure"
+      },
+      "spacing-xl": {
+        "value": 20,
+        "type": "number",
+        "prefix": "structure"
+      },
+      "spacing-xxl": {
+        "value": 40,
+        "type": "number",
+        "prefix": "structure"
+      },
+      "spacing-xxxl": {
+        "value": 64,
+        "type": "number",
+        "prefix": "structure"
+      }
+    },
+    "radius-no": {
+      "value": 0,
+      "type": "number",
+      "prefix": "structure"
+    },
+    "radius-xxs": {
+      "value": 2,
+      "type": "number",
+      "prefix": "structure"
+    },
+    "radius-xs": {
+      "value": 4,
+      "type": "number",
+      "prefix": "structure"
+    },
+    "radius-sm": {
+      "value": 8,
+      "type": "number",
+      "prefix": "structure"
+    },
+    "radius-md": {
+      "value": 12,
+      "type": "number",
+      "prefix": "structure"
+    },
+    "radius-lg": {
+      "value": 16,
+      "type": "number",
+      "prefix": "structure"
+    },
+    "radius-xl": {
+      "value": 24,
+      "type": "number",
+      "prefix": "structure"
+    },
+    "radius-xxl": {
+      "value": 32,
+      "type": "number",
+      "prefix": "structure"
+    },
+    "radius-round": {
+      "value": 1024,
+      "type": "number",
+      "prefix": "structure"
+    }
+  }
+}

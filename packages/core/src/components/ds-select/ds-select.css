@@ -1,0 +1,30 @@
+:host {
+  display: block;
+}
+
+.ds-select__label {
+  display: block;
+}
+
+.ds-select__wrapper {
+  position: relative;
+  display: block;
+}
+
+.ds-select__control {
+  width: 100%;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+.ds-select__control:disabled {
+  cursor: not-allowed;
+}
+
+.ds-select__help-text,
+.ds-select__error-text {
+  display: block;
+}
+
+
+

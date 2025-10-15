@@ -1,0 +1,24 @@
+{
+  "name": "ds-base",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "npm run build --workspace=packages/core",
+    "build:all": "npm run build -ws --if-present",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
+    "dev": "npm run start --workspace=packages/core"
+  },
+  "devDependencies": {
+    "@storybook/addon-essentials": "^8.4.0",
+    "@storybook/addon-links": "^9.1.10",
+    "@storybook/blocks": "^8.4.0",
+    "@storybook/web-components": "^9.1.10",
+    "@storybook/web-components-vite": "^9.1.10",
+    "storybook": "^9.1.10",
+    "vite": "^5.4.0"
+  }
+}

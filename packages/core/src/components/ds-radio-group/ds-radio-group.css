@@ -1,0 +1,26 @@
+:host {
+  display: block;
+}
+
+.ds-radio-group__label {
+  display: block;
+}
+
+.ds-radio-group__items {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+:host(.ds-radio-group--horizontal) .ds-radio-group__items {
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.ds-radio-group__help-text,
+.ds-radio-group__error-text {
+  display: block;
+}
+
+
+

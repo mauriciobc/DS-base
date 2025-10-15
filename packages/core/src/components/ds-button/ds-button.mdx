@@ -1,0 +1,58 @@
+import { Meta, Canvas, Story, Controls } from '@storybook/blocks';
+import * as DsButtonStories from './ds-button.stories';
+
+<Meta of={DsButtonStories} />
+
+# DS Button
+
+Um componente de botão framework-agnostic construído com Stencil, inspirado no Lion Web Components.
+
+## Características
+
+- ✅ Framework-agnostic (funciona com React, Angular, Vue, e vanilla JS)
+- ✅ Acessível (WCAG 2.1)
+- ✅ Customizável via CSS
+- ✅ Múltiplas variantes
+- ✅ Shadow DOM para encapsulamento de estilos
+
+## Uso
+
+### Web Components (Vanilla JS)
+```html
+<ds-button variant="primary">Clique aqui</ds-button>
+```
+
+### React
+```jsx
+import { DsButton } from '@ds-base/react';
+<DsButton variant="primary">Clique aqui</DsButton>
+```
+
+### Angular
+```html
+<ds-button variant="primary">Clique aqui</ds-button>
+```
+
+### Vue
+```vue
+<ds-button variant="primary">Clique aqui</ds-button>
+```
+
+## Variantes
+
+<Canvas of={DsButtonStories.AllVariants} />
+
+## Estados
+
+<Canvas of={DsButtonStories.AllStates} />
+
+## Propriedades
+
+<Controls />
+
+## Playground
+
+Experimente o componente abaixo:
+
+<Canvas of={DsButtonStories.Primary} />
+

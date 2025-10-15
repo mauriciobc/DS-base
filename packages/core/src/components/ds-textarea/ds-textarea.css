@@ -1,0 +1,79 @@
+/**
+ * DS-Textarea - Unstyled base component
+ * Only structural CSS, no visual styling
+ */
+
+:host {
+  display: block;
+}
+
+:host([hidden]) {
+  display: none;
+}
+
+.ds-textarea__label {
+  display: block;
+}
+
+.ds-textarea__required {
+  /* Hook for styling required indicator */
+}
+
+.ds-textarea__wrapper {
+  display: block;
+  position: relative;
+}
+
+.ds-textarea__control {
+  width: 100%;
+  font-family: inherit;
+  font-size: inherit;
+  resize: vertical;
+}
+
+:host(.ds-textarea--auto-resize) .ds-textarea__control {
+  resize: none;
+  overflow: hidden;
+}
+
+.ds-textarea__control:disabled {
+  cursor: not-allowed;
+  resize: none;
+}
+
+.ds-textarea__counter {
+  display: block;
+  text-align: right;
+}
+
+.ds-textarea__help-text {
+  display: block;
+}
+
+.ds-textarea__error-text {
+  display: block;
+}
+
+/* State classes for external styling */
+:host(.ds-textarea--disabled) {
+  /* Hook for disabled state styling */
+}
+
+:host(.ds-textarea--readonly) {
+  /* Hook for readonly state styling */
+}
+
+:host(.ds-textarea--error) {
+  /* Hook for error state styling */
+}
+
+:host(.ds-textarea--focused) {
+  /* Hook for focused state styling */
+}
+
+:host(.ds-textarea--touched) {
+  /* Hook for touched state styling */
+}
+
+
+

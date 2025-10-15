@@ -1,0 +1,66 @@
+{
+  "mode_1": {
+    "Loading": {
+      "value": 1,
+      "type": "number",
+      "prefix": "system"
+    },
+    "progressbarWidth": {
+      "value": "{spacing.spacing-sm}",
+      "type": "number",
+      "prefix": "system"
+    },
+    "slidePosition": {
+      "value": 0,
+      "type": "number",
+      "prefix": "system"
+    },
+    "Hour": {
+      "value": 0,
+      "type": "number",
+      "prefix": "system"
+    },
+    "Minute": {
+      "value": 0,
+      "type": "number",
+      "prefix": "system"
+    },
+    "Second": {
+      "value": 0,
+      "type": "number",
+      "prefix": "system"
+    }
+  },
+  "mode_2": {
+    "Loading": {
+      "value": 1,
+      "type": "number",
+      "prefix": "system"
+    },
+    "progressbarWidth": {
+      "value": "{spacing.spacing-sm}",
+      "type": "number",
+      "prefix": "system"
+    },
+    "slidePosition": {
+      "value": 0,
+      "type": "number",
+      "prefix": "system"
+    },
+    "Hour": {
+      "value": 0,
+      "type": "number",
+      "prefix": "system"
+    },
+    "Minute": {
+      "value": 0,
+      "type": "number",
+      "prefix": "system"
+    },
+    "Second": {
+      "value": 0,
+      "type": "number",
+      "prefix": "system"
+    }
+  }
+}

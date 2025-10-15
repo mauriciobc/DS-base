@@ -1,0 +1,22 @@
+{
+  "name": "@ds-base/vue",
+  "version": "1.0.0",
+  "description": "Design System Base - Vue Components",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc"
+  },
+  "peerDependencies": {
+    "vue": ">=3.0.0"
+  },
+  "dependencies": {
+    "@ds-base/core": "workspace:*"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.0",
+    "vue": "^3.5.0"
+  }
+}
+

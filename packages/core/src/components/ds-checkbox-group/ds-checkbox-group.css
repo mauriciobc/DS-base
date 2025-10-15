@@ -1,0 +1,26 @@
+:host {
+  display: block;
+}
+
+.ds-checkbox-group__label {
+  display: block;
+}
+
+.ds-checkbox-group__items {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+:host(.ds-checkbox-group--horizontal) .ds-checkbox-group__items {
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.ds-checkbox-group__help-text,
+.ds-checkbox-group__error-text {
+  display: block;
+}
+
+
+

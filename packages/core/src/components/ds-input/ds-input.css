@@ -1,0 +1,170 @@
+/**
+ * DS-Input - Styled component based on Figma Design System
+ * References: Voa Design System - Input Component
+ * Using design tokens from packages/core/src/tokens
+ */
+
+:host {
+  display: block;
+}
+
+:host([hidden]) {
+  display: none;
+}
+
+/* Label */
+.ds-input__label {
+  display: block;
+  margin-bottom: 8px; /* spacing.sm */
+  font-family: 'Lato', sans-serif; /* typography.fontFamilies.sans */
+  font-size: 16px; /* typography.desktop.bodyMedium.regular.fontSize */
+  font-weight: 500;
+  line-height: 24px; /* typography.desktop.bodyMedium.regular.lineHeight */
+  color: #0b1215; /* colors.text.primary */
+}
+
+.ds-input__required {
+  color: #dc3545;
+  margin-left: 2px;
+}
+
+/* Wrapper - Contains icon slots and input */
+.ds-input__wrapper {
+  display: flex;
+  align-items: center;
+  position: relative;
+  background-color: #ffffff; /* colors.structure.bgBase */
+  border: 1.125px solid #adb5bd; /* colors.structure.borderColor */
+  border-radius: 16px; /* radius.lg */
+  gap: 8px; /* spacing.sm */
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Icon slots */
+.ds-input__icon-left,
+.ds-input__icon-right {
+  display: none;
+  flex-shrink: 0;
+  color: #495057; /* colors.text.secondary */
+}
+
+.ds-input__icon-left::slotted(*),
+.ds-input__icon-right::slotted(*) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Show icon containers when they have content */
+.ds-input__icon-left:not(:empty) {
+  display: flex;
+}
+
+.ds-input__icon-right:not(:empty) {
+  display: flex;
+}
+
+/* Input Control */
+.ds-input__control {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: 'Lato', sans-serif; /* typography.fontFamilies.sans */
+  font-size: 16px; /* typography.desktop.bodyMedium.regular.fontSize */
+  font-weight: 400; /* typography.desktop.bodyMedium.regular.fontWeight */
+  line-height: 24px; /* typography.desktop.bodyMedium.regular.lineHeight */
+  color: #0b1215; /* colors.text.primary */
+}
+
+.ds-input__control::placeholder {
+  color: #9f9fa8; /* colors.text.placeholder */
+}
+
+/* Help and Error Text */
+.ds-input__help-text {
+  display: block;
+  margin-top: 4px; /* spacing.xs */
+  font-family: 'Lato', sans-serif; /* typography.fontFamilies.sans */
+  font-size: 14px; /* typography.desktop.bodySmall.regular.fontSize */
+  line-height: 20px;
+  color: #495057; /* colors.text.secondary */
+}
+
+.ds-input__error-text {
+  display: block;
+  margin-top: 4px; /* spacing.xs */
+  font-family: 'Lato', sans-serif; /* typography.fontFamilies.sans */
+  font-size: 14px; /* typography.desktop.bodySmall.regular.fontSize */
+  line-height: 20px;
+  color: #dc3545; /* semantic danger color */
+}
+
+/* Size Variants */
+:host(.ds-input--sm) .ds-input__wrapper {
+  padding: 4px 8px; /* spacing.xs spacing.sm */
+  border-radius: 12px; /* radius.md */
+}
+
+:host(.ds-input--md) .ds-input__wrapper {
+  padding: 12px; /* spacing.rg */
+  border-radius: 16px; /* radius.lg */
+}
+
+:host(.ds-input--lg) .ds-input__wrapper {
+  padding: 16px; /* spacing.md */
+  border-radius: 16px; /* radius.lg */
+}
+
+/* State: Hover */
+:host(:not(.ds-input--disabled):not(.ds-input--readonly)) .ds-input__wrapper:hover {
+  border-color: #0064cb; /* colors.brand.base */
+}
+
+/* State: Focused */
+:host(.ds-input--focused:not(.ds-input--disabled):not(.ds-input--readonly)) .ds-input__wrapper {
+  border-color: #0064cb; /* colors.brand.base */
+  box-shadow: 0px 0px 8px 2px rgba(0, 100, 203, 0.5) inset; /* colors.brand.base50 */
+}
+
+/* State: Disabled */
+:host(.ds-input--disabled) .ds-input__wrapper {
+  background-color: rgba(255, 255, 255, 0.25); /* colors.structure.bgBaseDisabled */
+  border-color: #dee2e6; /* colors.structure.borderColorSecondary */
+  cursor: not-allowed;
+}
+
+:host(.ds-input--disabled) .ds-input__control {
+  color: rgba(11, 18, 21, 0.25); /* colors.text.disabled */
+  cursor: not-allowed;
+}
+
+:host(.ds-input--disabled) .ds-input__control::placeholder {
+  color: rgba(11, 18, 21, 0.25); /* colors.text.disabled */
+}
+
+:host(.ds-input--disabled) .ds-input__label {
+  color: rgba(11, 18, 21, 0.25); /* colors.text.disabled */
+}
+
+/* State: Readonly */
+:host(.ds-input--readonly) .ds-input__wrapper {
+  background-color: #f8f9fa;
+  cursor: default;
+}
+
+:host(.ds-input--readonly) .ds-input__control {
+  cursor: default;
+}
+
+/* State: Error */
+:host(.ds-input--error:not(.ds-input--disabled)) .ds-input__wrapper {
+  border-color: #dc3545;
+}
+
+:host(.ds-input--error.ds-input--focused:not(.ds-input--disabled)) .ds-input__wrapper {
+  border-color: #dc3545;
+  box-shadow: 0px 0px 8px 2px rgba(220, 53, 69, 0.25) inset;
+}
+

@@ -22,7 +22,7 @@ export const dropdownTokens = {
       vertical: spacing.xs, // 4px
     },
     gap: spacing.md, // 16px
-    borderBottom: '1px solid white',
+    borderBottom: `1px solid ${structureColors.borderColorSecondary}`,
   },
   arrow: {
     width: 24,
@@ -49,7 +49,7 @@ export const dropdownTokens = {
       bg: structureColors.bgBase,
     },
     selected: {
-      bg: '#f8f9fa', // Cor de seleção baseada no design system
+      bg: structureColors.selectionBackground, // Selection background color based on design system
     },
     disabled: {
       opacity: 0.5,

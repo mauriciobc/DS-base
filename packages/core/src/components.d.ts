@@ -198,15 +198,23 @@ export namespace Components {
     }
     interface DsDropdownItem {
         /**
-          * Posicionamento do item
-          * @default 'relative'
+          * Alinhamento horizontal da seta
+          * @default 'left'
          */
-        "position": 'relative' | 'absolute';
+        "arrowAlign": 'left' | 'middle' | 'right';
         /**
-          * Variação da seta
+          * Caminho personalizado para o SVG da seta para baixo Se não fornecido, usa o valor padrão da configuração de assets
+         */
+        "arrowDownPath"?: string;
+        /**
+          * Caminho personalizado para o SVG da seta para cima Se não fornecido, usa o valor padrão da configuração de assets
+         */
+        "arrowUpPath"?: string;
+        /**
+          * Posição da seta
           * @default 'noarrow'
          */
-        "variant": 'noarrow' | 'top' | 'bottom';
+        "position": 'top' | 'bottom' | 'noarrow';
     }
     interface DsInput {
         /**
@@ -932,15 +940,23 @@ declare namespace LocalJSX {
     }
     interface DsDropdownItem {
         /**
-          * Posicionamento do item
-          * @default 'relative'
+          * Alinhamento horizontal da seta
+          * @default 'left'
          */
-        "position"?: 'relative' | 'absolute';
+        "arrowAlign"?: 'left' | 'middle' | 'right';
         /**
-          * Variação da seta
+          * Caminho personalizado para o SVG da seta para baixo Se não fornecido, usa o valor padrão da configuração de assets
+         */
+        "arrowDownPath"?: string;
+        /**
+          * Caminho personalizado para o SVG da seta para cima Se não fornecido, usa o valor padrão da configuração de assets
+         */
+        "arrowUpPath"?: string;
+        /**
+          * Posição da seta
           * @default 'noarrow'
          */
-        "variant"?: 'noarrow' | 'top' | 'bottom';
+        "position"?: 'top' | 'bottom' | 'noarrow';
     }
     interface DsInput {
         /**
@@ -1043,7 +1059,7 @@ declare namespace LocalJSX {
          */
         "index"?: number;
         /**
-          * Emitido quando o item é selecionado
+          * Emitido quando o item é clicado/selecionado. O componente pai é responsável por gerenciar o estado de seleção. Payload: { value: any, index: number }
          */
         "onDsSelect"?: (event: DsMenuItemCustomEvent<any>) => void;
         /**

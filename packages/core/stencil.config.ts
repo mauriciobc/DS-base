@@ -49,6 +49,7 @@ export const config: Config = {
   ],
   testing: {
     browserHeadless: 'new',
+    setupFilesAfterEnv: ['<rootDir>/test-setup.ts'],
   },
 };
 

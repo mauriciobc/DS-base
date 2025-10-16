@@ -98,13 +98,26 @@ export class DsAvatar {
       colors.palette.cyan
     ];
     
+    // Cálculo seguro do índice da paleta usando módulo
     const paletteIndex = Math.abs(hash) % colorPalettes.length;
-    const colorIndex = Math.abs(hash) % 6; // Usar cores 3-8 (mais vibrantes)
     const selectedPalette = colorPalettes[paletteIndex];
-    const colorKeys = Object.keys(selectedPalette) as Array<keyof typeof selectedPalette>;
-    const selectedColor = selectedPalette[colorKeys[colorIndex + 3] as keyof typeof selectedPalette];
     
-    return selectedColor;
+    // Obter chaves da paleta selecionada e calcular índice seguro
+    const colorKeys = Object.keys(selectedPalette) as Array<keyof typeof selectedPalette>;
+    
+    // Usar módulo para garantir que o índice esteja dentro dos limites
+    const colorIndex = Math.abs(hash) % colorKeys.length;
+    
+    // Calcular índice seguro para cores mais vibrantes (cores 3-8)
+    // Se não houver cores suficientes, usar o último índice disponível
+    const safeColorIndex = Math.min(colorKeys.length - 1, colorIndex + 3);
+    
+    // Tentar obter a cor com índice seguro
+    const colorKey = colorKeys[safeColorIndex] as keyof typeof selectedPalette;
+    const selectedColor = selectedPalette[colorKey];
+    
+    // Fallback para cor de borda secundária se a cor não existir
+    return selectedColor || colors.structure.borderColorSecondary;
   }
 
   /**

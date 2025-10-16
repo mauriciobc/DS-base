@@ -1,4 +1,5 @@
 import { Component, Prop, h, Host } from '@stencil/core';
+import { currentAssets } from '../../tokens/assets';
 
 @Component({
   tag: 'ds-dropdown-item',
@@ -17,6 +18,18 @@ export class DsDropdownItem {
   @Prop() arrowAlign: 'left' | 'middle' | 'right' = 'left';
 
   /**
+   * Caminho personalizado para o SVG da seta para cima
+   * Se não fornecido, usa o valor padrão da configuração de assets
+   */
+  @Prop() arrowUpPath?: string;
+
+  /**
+   * Caminho personalizado para o SVG da seta para baixo
+   * Se não fornecido, usa o valor padrão da configuração de assets
+   */
+  @Prop() arrowDownPath?: string;
+
+  /**
    * Se deve mostrar a seta
    */
   get showArrow(): boolean {
@@ -24,17 +37,17 @@ export class DsDropdownItem {
   }
 
   /**
-   * Caminho para o SVG da seta para cima
+   * Obtém o caminho da seta para cima (propriedade ou padrão)
    */
-  get arrowUpPath(): string {
-    return '/assets/icons/arrow-up.svg';
+  get resolvedArrowUpPath(): string {
+    return this.arrowUpPath || currentAssets.icons.arrowUp;
   }
 
   /**
-   * Caminho para o SVG da seta para baixo
+   * Obtém o caminho da seta para baixo (propriedade ou padrão)
    */
-  get arrowDownPath(): string {
-    return '/assets/icons/arrow-down.svg';
+  get resolvedArrowDownPath(): string {
+    return this.arrowDownPath || currentAssets.icons.arrowDown;
   }
 
   render() {
@@ -49,7 +62,7 @@ export class DsDropdownItem {
         {this.showArrow && this.position === 'top' && (
           <div class="ds-dropdown-item__arrow ds-dropdown-item__arrow--top">
             <img 
-              src={this.arrowUpPath} 
+              src={this.resolvedArrowUpPath} 
               alt="Seta para cima"
               class="ds-dropdown-item__arrow-icon"
             />
@@ -63,7 +76,7 @@ export class DsDropdownItem {
         {this.showArrow && this.position === 'bottom' && (
           <div class="ds-dropdown-item__arrow ds-dropdown-item__arrow--bottom">
             <img 
-              src={this.arrowDownPath} 
+              src={this.resolvedArrowDownPath} 
               alt="Seta para baixo"
               class="ds-dropdown-item__arrow-icon"
             />

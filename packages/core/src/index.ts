@@ -1,4 +1,9 @@
+// Exportar tipos principais do Stencil
 export { Components, JSX } from './components';
+
+// Exportar componentes usando wildcard exports
+// Convenção: usar 'export *' para componentes permite que todos os exports
+// de cada componente sejam automaticamente disponibilizados
 export * from './components/ds-button/ds-button';
 export * from './components/ds-input/ds-input';
 export * from './components/ds-textarea/ds-textarea';

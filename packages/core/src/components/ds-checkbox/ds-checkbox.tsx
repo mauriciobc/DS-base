@@ -47,6 +47,12 @@ export class DsCheckbox {
   @State() isTouched: boolean = false;
 
   private inputRef?: HTMLInputElement;
+  private readonly checkboxId: string;
+
+  constructor() {
+    // Gerar ID único e estável para o checkbox
+    this.checkboxId = `checkbox-${Math.random().toString(36).slice(2, 11)}`;
+  }
 
   /**
    * Emitted when the checkbox checked state changes
@@ -95,8 +101,6 @@ export class DsCheckbox {
   };
 
   render() {
-    const checkboxId = `checkbox-${this.name || 'default'}-${Math.random().toString(36).substr(2, 9)}`;
-
     return (
       <Host
         class={{
@@ -113,13 +117,13 @@ export class DsCheckbox {
               ref={(el) => (this.inputRef = el)}
               type="checkbox"
               class="ds-checkbox__input"
-              id={checkboxId}
+              id={this.checkboxId}
               name={this.name}
               value={this.value}
               checked={this.checked}
               disabled={this.disabled}
               required={this.required}
-              aria-label={this.label || undefined}
+              aria-label={this.label ? undefined : this.label}
               aria-checked={this.indeterminate ? 'mixed' : this.checked.toString()}
               onInput={this.handleInput}
               onFocus={this.handleFocus}
@@ -139,7 +143,7 @@ export class DsCheckbox {
             </div>
           </div>
           {this.label && (
-            <label htmlFor={checkboxId} class="ds-checkbox__label">
+            <label htmlFor={this.checkboxId} class="ds-checkbox__label">
               {this.label}
             </label>
           )}

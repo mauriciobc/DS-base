@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
+import { ifDefined } from 'lit-html/directives/if-defined.js';
 
 const meta: Meta = {
   title: 'Components/Dropdown',
@@ -71,8 +72,8 @@ export const Default: Story = {
       ?multiple=${args.multiple}
       ?searchable=${args.searchable}
       variant=${args.variant}
-      help-text=${args.helpText}
-      error-text=${args.errorText}
+      help-text=${ifDefined(args.helpText)}
+      error-text=${ifDefined(args.errorText)}
     >
       <ds-dropdown-item variant=${args.variant || 'noarrow'}>
         <ds-menu-item value="1" index="0">
@@ -218,7 +219,7 @@ export const WithError: Story = {
     <ds-dropdown
       name=${args.name}
       label=${args.label}
-      error-text=${args.errorText}
+      error-text=${ifDefined(args.errorText)}
       ?required=${args.required}
     >
       <ds-dropdown-item>
@@ -267,7 +268,7 @@ export const WithHelpText: Story = {
     <ds-dropdown
       name=${args.name}
       label=${args.label}
-      help-text=${args.helpText}
+      help-text=${ifDefined(args.helpText)}
     >
       <ds-dropdown-item>
         <ds-menu-item value="1" index="0">

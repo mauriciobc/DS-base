@@ -94,7 +94,7 @@
   transform: rotate(180deg);
 }
 
-/* Overlay removido - será gerenciado externamente via ds-dropdown-item */
+/* Estilos do overlay do dropdown - usado para posicionar o menu de opções */
 
 .ds-dropdown__help-text {
   display: block;
@@ -133,6 +133,35 @@
   cursor: text;
 }
 
+/* Posicionamento do overlay */
+.ds-dropdown__overlay {
+  position: absolute;
+  z-index: 1000;
+  width: 100%;
+  min-width: 200px;
+  background: var(--ds-color-structure-bg-base);
+  border: 1px solid var(--dropdown-border);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+}
+
+/* Posicionamento abaixo (padrão) */
+.ds-dropdown__overlay--bottom {
+  top: 100%;
+  bottom: auto;
+  margin-top: 4px;
+  margin-bottom: 0;
+}
+
+/* Posicionamento acima */
+.ds-dropdown__overlay--top {
+  top: auto;
+  bottom: 100%;
+  margin-top: 0;
+  margin-bottom: 4px;
+}
+
 /* Responsividade */
 @media (max-width: 768px) {
   .ds-dropdown__overlay {
@@ -143,5 +172,6 @@
     right: 0;
     border-radius: 16px 16px 0 0;
     max-height: 50vh;
+    margin: 0;
   }
 }

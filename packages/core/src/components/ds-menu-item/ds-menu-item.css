@@ -4,7 +4,7 @@
   --menu-item-padding-right: var(--ds-spacing-md, 16px);
   --menu-item-padding-vertical: var(--ds-spacing-xs, 4px);
   --menu-item-bg: var(--ds-color-structure-bg-base);
-  --menu-item-bg-hover: var(--ds-color-structure-bg-base);
+  --menu-item-bg-hover: var(--ds-color-gray-1);
   --menu-item-bg-selected: var(--ds-color-gray-0, #f8f9fa);
   --menu-item-border-bottom: 1px solid var(--ds-color-structure-bg-base);
   --menu-item-cursor: pointer;
@@ -50,7 +50,6 @@
 .ds-menu-item--disabled {
   cursor: var(--menu-item-cursor-disabled);
   opacity: 0.5;
-  pointer-events: none;
 }
 
 .ds-menu-item--disabled .ds-menu-item__content {

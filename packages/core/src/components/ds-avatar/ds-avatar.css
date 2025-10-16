@@ -4,6 +4,12 @@
   --avatar-bg-elevated: #dee2e6;
   --avatar-text-primary: #0b1215;
   --avatar-radius-round: 1024px;
+  --avatar-status-border-width: 2px;
+  --avatar-status-border: white;
+  --avatar-status-online: #10b981;
+  --avatar-status-offline: #6b7280;
+  --avatar-status-away: #f59e0b;
+  --avatar-status-busy: #ef4444;
 }
 
 .avatar {
@@ -72,7 +78,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: 'Manrope', sans-serif;
+  font-family: var(--ds-font-family-sans);
   font-weight: 600;
   color: var(--avatar-text-primary);
   line-height: 1;
@@ -130,22 +136,23 @@
 }
 
 /* Garantir que o badge não seja afetado pelo flexbox do container pai */
-.avatar .avatar__badge {
-  /* Forçar posicionamento absoluto independente do flexbox */
-  position: absolute !important;
-  /* Remover qualquer influência do flexbox */
+/* Replace the over-broad selector and drop the `!important` override */
+.avatar.avatar--xs .avatar__badge,
+.avatar.avatar--sm .avatar__badge,
+.avatar.avatar--md .avatar__badge,
+.avatar.avatar--lg .avatar__badge,
+.avatar.avatar--xl .avatar__badge {
+  position: absolute;
   align-self: auto;
   order: 0;
-  /* NÃO resetar as propriedades de posição específicas das classes */
 }
-
 /* Status */
 .avatar__status {
   position: absolute;
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  border: 2px solid white;
+  border: var(--avatar-status-border-width) solid var(--avatar-status-border);
   z-index: 1;
   /* Garantir que o status não seja afetado pelo flexbox do container pai */
   margin: 0;
@@ -165,19 +172,19 @@
 
 /* Status colors - apenas para demonstração, será sobrescrito pelo design system */
 .avatar__status--online {
-  background-color: #10b981;
+  background-color: var(--avatar-status-online);
 }
 
 .avatar__status--offline {
-  background-color: #6b7280;
+  background-color: var(--avatar-status-offline);
 }
 
 .avatar__status--away {
-  background-color: #f59e0b;
+  background-color: var(--avatar-status-away);
 }
 
 .avatar__status--busy {
-  background-color: #ef4444;
+  background-color: var(--avatar-status-busy);
 }
 
 /* Tamanhos de fonte para iniciais - Valores exatos do Figma */

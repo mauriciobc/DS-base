@@ -257,11 +257,13 @@ Adicionar exports de tipos para os 4 novos componentes.
 **Arquivo**: `packages/core/src/index.ts`
 
 ```typescript
-export { DsDropdown } from './components/ds-dropdown/ds-dropdown';
-export { DsDropdownItem } from './components/ds-dropdown-item/ds-dropdown-item';
-export { DsMenuItem } from './components/ds-menu-item/ds-menu-item';
-export { DsMenuItemContent } from './components/ds-menu-item-content/ds-menu-item-content';
+export * from './components/ds-dropdown/ds-dropdown';
+export * from './components/ds-dropdown-item/ds-dropdown-item';
+export * from './components/ds-menu-item/ds-menu-item';
+export * from './components/ds-menu-item-content/ds-menu-item-content';
 ```
+
+**Nota**: O projeto usa exports wildcard (`export *`) para componentes, que automaticamente exporta todos os exports de cada componente. Isso é mais simples e consistente com o padrão já estabelecido no arquivo.
 
 ### 5.2 Testes Unitários
 

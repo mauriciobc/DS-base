@@ -12,8 +12,10 @@ const preview: Preview = {
   },
   decorators: [
     (story) => {
-      // Importar os componentes Stencil dinamicamente
-      import('../dist/esm/ds-base.js');
+      // Importar os componentes Stencil dinamicamente e aguardar o carregamento
+      import('../dist/esm/ds-base.js').then(() => {
+        // Componentes carregados
+      });
       return story();
     },
   ],

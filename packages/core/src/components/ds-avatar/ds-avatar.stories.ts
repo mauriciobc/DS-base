@@ -19,8 +19,7 @@ const meta: Meta = {
     },
     alt: {
       control: 'text',
-      description: 'Text alternativo para a imagem'
-    },
+      description: 'Texto alternativo para a imagem'    },
     name: {
       control: 'text',
       description: 'Nome para gerar iniciais automaticamente'

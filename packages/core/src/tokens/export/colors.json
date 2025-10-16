@@ -36,6 +36,11 @@
         "type": "color",
         "prefix": "colors"
       },
+      "selection-background": {
+        "value": "#f8f9fa",
+        "type": "color",
+        "prefix": "colors"
+      },
       "bg-container": {
         "value": "{Pallete.gray.gray-1}",
         "type": "color",
@@ -914,6 +919,11 @@
       },
       "bg-base-disabled": {
         "value": "#1b1e2140",
+        "type": "color",
+        "prefix": "colors"
+      },
+      "selection-background": {
+        "value": "#50505d",
         "type": "color",
         "prefix": "colors"
       },

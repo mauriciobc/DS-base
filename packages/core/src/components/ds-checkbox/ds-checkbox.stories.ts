@@ -51,6 +51,7 @@ export const Default: Story = {
   args: {
     label: 'Accept terms and conditions',
     value: 'terms',
+    name: 'terms',
     checked: false,
     disabled: false,
     required: false,
@@ -163,33 +164,38 @@ export const InsideGroup: Story = {
 };
 
 export const SelectAllExample: Story = {
-  render: () => html`
-    <div>
-      <ds-checkbox 
-        id="select-all" 
-        label="Select all" 
-        name="select-all"
-        indeterminate
-        onDsChange="${(e: CustomEvent) => {
-          const checkboxes = document.querySelectorAll('ds-checkbox:not(#select-all)');
-          checkboxes.forEach((cb: any) => {
-            cb.checked = e.detail;
-            cb.indeterminate = false;
-          });
-        }}"
-      ></ds-checkbox>
-      
-      <div style="margin-top: 16px; margin-left: 24px;">
-        <ds-checkbox value="option1" label="Option 1" name="options"></ds-checkbox>
-        <ds-checkbox value="option2" label="Option 2" name="options"></ds-checkbox>
-        <ds-checkbox value="option3" label="Option 3" name="options"></ds-checkbox>
+  render: () => {
+    const handleSelectAllChange = (e: CustomEvent<boolean>) => {
+      const checkboxes = document.querySelectorAll('ds-checkbox:not(#select-all)');
+      checkboxes.forEach((cb) => {
+        const checkbox = cb as HTMLDsCheckboxElement;
+        checkbox.checked = e.detail;
+        checkbox.indeterminate = false;
+      });
+    };
+
+    return html`
+      <div>
+        <ds-checkbox 
+          id="select-all" 
+          label="Select all" 
+          name="select-all"
+          ?indeterminate=${true}
+          @dsChange=${handleSelectAllChange}
+        ></ds-checkbox>
+        
+        <div style="margin-top: 16px; margin-left: 24px;">
+          <ds-checkbox value="option1" label="Option 1" name="options"></ds-checkbox>
+          <ds-checkbox value="option2" label="Option 2" name="options"></ds-checkbox>
+          <ds-checkbox value="option3" label="Option 3" name="options"></ds-checkbox>
+        </div>
       </div>
-    </div>
-  `,
+    `;
+  },
   parameters: {
     docs: {
       description: {
-        story: 'Exemplo prático de "Select All" usando estado indeterminado.'
+        story: 'Exemplo prático de "Select All" usando estado indeterminado com interatividade real.'
       }
     }
   }

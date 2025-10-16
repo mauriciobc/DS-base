@@ -58,8 +58,7 @@ describe('ds-menu-item', () => {
     
     expect(spy).toHaveBeenCalledWith({
       value: 'test-value',
-      index: 0,
-      selected: true
+      index: 0
     });
   });
 

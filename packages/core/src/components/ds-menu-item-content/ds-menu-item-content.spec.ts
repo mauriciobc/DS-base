@@ -5,7 +5,7 @@ describe('ds-menu-item-content', () => {
   it('renders with title only', async () => {
     const page = await newSpecPage({
       components: [DsMenuItemContent],
-      html: `<ds-menu-item-content item-item-title="Test Title"></ds-menu-item-content>`,
+      html: `<ds-menu-item-content item-title="Test Title"></ds-menu-item-content>`,
     });
     expect(page.root).toEqualHtml(`
       <ds-menu-item-content class="ds-menu-item-content ds-menu-item-content--single" item-title="Test Title">

@@ -13,7 +13,7 @@
     "react-dom": ">=16.8.0"
   },
   "dependencies": {
-    "@ds-base/core": "workspace:*"
+    "@ds-base/core": "^1.0.0"
   },
   "devDependencies": {
     "@types/react": "^18.3.0",

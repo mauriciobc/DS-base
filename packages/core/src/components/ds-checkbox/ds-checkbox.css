@@ -92,6 +92,20 @@
   box-shadow: var(--checkbox-outer-shadow), var(--checkbox-shadow-checked);
 }
 
+/* Focus + Hover - Checked (prioridade sobre hover simples) */
+.ds-checkbox__input:focus:hover:checked + .ds-checkbox__box {
+  background-color: var(--checkbox-bg-hover-checked);
+  border-color: var(--checkbox-border-hover-checked);
+  box-shadow: var(--checkbox-outer-shadow), var(--checkbox-shadow-checked), var(--checkbox-shadow-focus);
+}
+
+/* Focus + Hover - Indeterminate (prioridade sobre hover simples) */
+.ds-checkbox__input:focus:hover:indeterminate + .ds-checkbox__box {
+  background-color: var(--checkbox-bg-hover-checked);
+  border-color: var(--checkbox-border-hover-checked);
+  box-shadow: var(--checkbox-outer-shadow), var(--checkbox-shadow-checked), var(--checkbox-shadow-focus);
+}
+
 /* Focus - Checked */
 .ds-checkbox__input:focus:checked + .ds-checkbox__box {
   background-color: var(--checkbox-bg-checked);

@@ -195,6 +195,21 @@ export {
   dropdownTokens,
 } from './dropdown';
 
+// Exportar configuração de assets
+export {
+  defaultAssets,
+  assetConfigs,
+  getAssetConfig,
+  getAssetConfigFromEnv,
+  currentAssets,
+  default as assets,
+} from './assets';
+
+export type {
+  AssetConfig,
+  Environment,
+} from './assets';
+
 export type {
   DropdownTokens,
 } from './dropdown';

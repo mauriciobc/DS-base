@@ -197,6 +197,99 @@
       </div>
     </div>
 
+    <!-- Dropdown -->
+    <div class="section">
+      <h2>Dropdown com Sincronização de Valor</h2>
+      <div class="button-demo">
+        <h3>Seleção Única</h3>
+        <ds-dropdown 
+          label="Escolha uma opção"
+          placeholder="Selecione..."
+          name="single-dropdown"
+          id="single-dropdown"
+        >
+          <ds-menu-item value="opcao1">
+            <ds-menu-item-content title="Opção 1" subtitle="Primeira opção" />
+          </ds-menu-item>
+          <ds-menu-item value="opcao2">
+            <ds-menu-item-content title="Opção 2" subtitle="Segunda opção" />
+          </ds-menu-item>
+          <ds-menu-item value="opcao3">
+            <ds-menu-item-content title="Opção 3" subtitle="Terceira opção" />
+          </ds-menu-item>
+        </ds-dropdown>
+        <p id="single-value" style="margin-top: 1rem; color: #666; font-size: 0.875rem;">
+          Valor selecionado: <strong>Nenhum</strong>
+        </p>
+      </div>
+      
+      <div class="button-demo">
+        <h3>Seleção Múltipla</h3>
+        <ds-dropdown 
+          label="Escolha múltiplas opções"
+          placeholder="Selecione..."
+          name="multiple-dropdown"
+          multiple="true"
+          id="multiple-dropdown"
+        >
+          <ds-menu-item value="item1">
+            <ds-menu-item-content title="Item 1" subtitle="Primeiro item" />
+          </ds-menu-item>
+          <ds-menu-item value="item2">
+            <ds-menu-item-content title="Item 2" subtitle="Segundo item" />
+          </ds-menu-item>
+          <ds-menu-item value="item3">
+            <ds-menu-item-content title="Item 3" subtitle="Terceiro item" />
+          </ds-menu-item>
+          <ds-menu-item value="item4">
+            <ds-menu-item-content title="Item 4" subtitle="Quarto item" />
+          </ds-menu-item>
+        </ds-dropdown>
+        <p id="multiple-value" style="margin-top: 1rem; color: #666; font-size: 0.875rem;">
+          Valores selecionados: <strong>Nenhum</strong>
+        </p>
+      </div>
+    </div>
+
+    <!-- Dropdown Item com Assets Configuráveis -->
+    <div class="section">
+      <h2>Dropdown Item - Assets Configuráveis</h2>
+      <div class="button-demo">
+        <h3>Usando Assets Padrão</h3>
+        <ds-dropdown-item position="top" arrow-align="middle">
+          Item com seta para cima (assets padrão)
+        </ds-dropdown-item>
+        <ds-dropdown-item position="bottom" arrow-align="middle">
+          Item com seta para baixo (assets padrão)
+        </ds-dropdown-item>
+      </div>
+      
+      <div class="button-demo">
+        <h3>Usando Assets Personalizados</h3>
+        <ds-dropdown-item 
+          position="top" 
+          arrow-align="middle"
+          arrow-up-path="https://cdn.jsdelivr.net/npm/@tabler/icons@latest/icons/chevron-up.svg"
+        >
+          Item com seta personalizada (CDN externo)
+        </ds-dropdown-item>
+        <ds-dropdown-item 
+          position="bottom" 
+          arrow-align="middle"
+          arrow-down-path="https://cdn.jsdelivr.net/npm/@tabler/icons@latest/icons/chevron-down.svg"
+        >
+          Item com seta personalizada (CDN externo)
+        </ds-dropdown-item>
+      </div>
+      
+      <div class="button-demo">
+        <h3>Sem Seta</h3>
+        <ds-dropdown-item position="noarrow">
+          Item sem seta
+        </ds-dropdown-item>
+      </div>
+    </div>
+
     <!-- Código de Uso -->
     <div class="section">
       <h2>Como Usar</h2>
@@ -208,6 +301,40 @@
 &lt;ds-button variant="primary"&gt;Clique aqui&lt;/ds-button&gt;
 &lt;ds-button variant="secondary" disabled&gt;Desabilitado&lt;/ds-button&gt;
 &lt;ds-button variant="tertiary" type="submit"&gt;Enviar&lt;/ds-button&gt;
+
+&lt;!-- Dropdown com seleção única --&gt;
+&lt;ds-dropdown label="Escolha uma opção" placeholder="Selecione..."&gt;
+  &lt;ds-menu-item value="opcao1"&gt;
+    &lt;ds-menu-item-content title="Opção 1" subtitle="Primeira opção" /&gt;
+  &lt;/ds-menu-item&gt;
+  &lt;ds-menu-item value="opcao2"&gt;
+    &lt;ds-menu-item-content title="Opção 2" subtitle="Segunda opção" /&gt;
+  &lt;/ds-menu-item&gt;
+&lt;/ds-dropdown&gt;
+
+&lt;!-- Dropdown com seleção múltipla --&gt;
+&lt;ds-dropdown label="Escolha múltiplas opções" multiple="true"&gt;
+  &lt;ds-menu-item value="item1"&gt;
+    &lt;ds-menu-item-content title="Item 1" /&gt;
+  &lt;/ds-menu-item&gt;
+  &lt;ds-menu-item value="item2"&gt;
+    &lt;ds-menu-item-content title="Item 2" /&gt;
+  &lt;/ds-menu-item&gt;
+&lt;/ds-dropdown&gt;
+
+&lt;!-- Dropdown Item com assets padrão --&gt;
+&lt;ds-dropdown-item position="top" arrow-align="middle"&gt;
+  Item com seta para cima
+&lt;/ds-dropdown-item&gt;
+
+&lt;!-- Dropdown Item com assets personalizados --&gt;
+&lt;ds-dropdown-item 
+  position="bottom" 
+  arrow-align="middle"
+  arrow-down-path="https://cdn.example.com/custom-arrow-down.svg"
+&gt;
+  Item com seta personalizada
+&lt;/ds-dropdown-item&gt;
       </div>
     </div>
 
@@ -217,11 +344,24 @@
       
       <h3 style="margin-top: 1.5rem; color: #61dafb;">⚛️ React</h3>
       <div class="code-block">
-import { DsButton } from '@ds-base/react';
+import { DsButton, DsDropdown, DsMenuItem, DsMenuItemContent } from '@ds-base/react';
 
 &lt;DsButton variant="primary" onClick={() => alert('Clicado!')}&gt;
   Clique aqui
 &lt;/DsButton&gt;
+
+&lt;DsDropdown 
+  label="Escolha uma opção" 
+  placeholder="Selecione..."
+  onDsChange={(event) => console.log('Valor selecionado:', event.detail)}
+&gt;
+  &lt;DsMenuItem value="opcao1"&gt;
+    &lt;DsMenuItemContent title="Opção 1" /&gt;
+  &lt;/DsMenuItem&gt;
+  &lt;DsMenuItem value="opcao2"&gt;
+    &lt;DsMenuItemContent title="Opção 2" /&gt;
+  &lt;/DsMenuItem&gt;
+&lt;/DsDropdown&gt;
       </div>
 
       <h3 style="margin-top: 1.5rem; color: #dd0031;">🅰️ Angular</h3>
@@ -230,6 +370,19 @@ import { DsButton } from '@ds-base/react';
 &lt;ds-button variant="primary" (click)="handleClick()"&gt;
   Clique aqui
 &lt;/ds-button&gt;
+
+&lt;ds-dropdown 
+  label="Escolha uma opção" 
+  placeholder="Selecione..."
+  (dsChange)="onDropdownChange($event)"
+&gt;
+  &lt;ds-menu-item value="opcao1"&gt;
+    &lt;ds-menu-item-content title="Opção 1" /&gt;
+  &lt;/ds-menu-item&gt;
+  &lt;ds-menu-item value="opcao2"&gt;
+    &lt;ds-menu-item-content title="Opção 2" /&gt;
+  &lt;/ds-menu-item&gt;
+&lt;/ds-dropdown&gt;
       </div>
 
       <h3 style="margin-top: 1.5rem; color: #42b883;">💚 Vue</h3>
@@ -238,10 +391,27 @@ import { DsButton } from '@ds-base/react';
   &lt;DsButton variant="primary" @click="handleClick"&gt;
     Clique aqui
   &lt;/DsButton&gt;
+  
+  &lt;DsDropdown 
+    label="Escolha uma opção" 
+    placeholder="Selecione..."
+    @dsChange="onDropdownChange"
+  &gt;
+    &lt;DsMenuItem value="opcao1"&gt;
+      &lt;DsMenuItemContent title="Opção 1" /&gt;
+    &lt;/DsMenuItem&gt;
+    &lt;DsMenuItem value="opcao2"&gt;
+      &lt;DsMenuItemContent title="Opção 2" /&gt;
+    &lt;/DsMenuItem&gt;
+  &lt;/DsDropdown&gt;
 &lt;/template&gt;
 
 &lt;script setup&gt;
-import { DsButton } from '@ds-base/vue';
+import { DsButton, DsDropdown, DsMenuItem, DsMenuItemContent } from '@ds-base/vue';
+
+const onDropdownChange = (event) => {
+  console.log('Valor selecionado:', event.detail);
+};
 &lt;/script&gt;
       </div>
     </div>
@@ -257,6 +427,30 @@ import { DsButton } from '@ds-base/vue';
       if (button) {
         button.addEventListener('click', () => {
           alert('🎉 Botão funcionando perfeitamente!\n\nEste é um Web Component framework-agnostic que pode ser usado em React, Angular, Vue ou vanilla JavaScript!');
+        });
+      }
+
+      // Demonstrar funcionalidade do dropdown
+      const singleDropdown = document.getElementById('single-dropdown');
+      const multipleDropdown = document.getElementById('multiple-dropdown');
+      const singleValueDisplay = document.getElementById('single-value');
+      const multipleValueDisplay = document.getElementById('multiple-value');
+
+      if (singleDropdown) {
+        singleDropdown.addEventListener('dsChange', (event) => {
+          const value = event.detail;
+          singleValueDisplay.innerHTML = `Valor selecionado: <strong>${value || 'Nenhum'}</strong>`;
+        });
+      }
+
+      if (multipleDropdown) {
+        multipleDropdown.addEventListener('dsChange', (event) => {
+          const values = event.detail;
+          if (Array.isArray(values) && values.length > 0) {
+            multipleValueDisplay.innerHTML = `Valores selecionados: <strong>${values.join(', ')}</strong>`;
+          } else {
+            multipleValueDisplay.innerHTML = `Valores selecionados: <strong>Nenhum</strong>`;
+          }
         });
       }
     });

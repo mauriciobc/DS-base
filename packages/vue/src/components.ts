@@ -77,8 +77,10 @@ export const DsDropdown = /*@__PURE__*/ defineContainer<JSX.DsDropdown>('ds-drop
 
 
 export const DsDropdownItem = /*@__PURE__*/ defineContainer<JSX.DsDropdownItem>('ds-dropdown-item', undefined, [
-  'variant',
-  'position'
+  'position',
+  'arrowAlign',
+  'arrowUpPath',
+  'arrowDownPath'
 ]);
 
 

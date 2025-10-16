@@ -160,14 +160,14 @@ export declare interface DsDropdown extends Components.DsDropdown {
 
 
 @ProxyCmp({
-  inputs: ['position', 'variant']
+  inputs: ['arrowAlign', 'arrowDownPath', 'arrowUpPath', 'position']
 })
 @Component({
   selector: 'ds-dropdown-item',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['position', 'variant'],
+  inputs: ['arrowAlign', 'arrowDownPath', 'arrowUpPath', 'position'],
 })
 export class DsDropdownItem {
   protected el: HTMLElement;
@@ -243,7 +243,9 @@ export class DsMenuItem {
 
 export declare interface DsMenuItem extends Components.DsMenuItem {
   /**
-   * Emitido quando o item é selecionado
+   * Emitido quando o item é clicado/selecionado.
+O componente pai é responsável por gerenciar o estado de seleção.
+Payload: { value: any, index: number }
    */
   dsSelect: EventEmitter<CustomEvent<any>>;
 }

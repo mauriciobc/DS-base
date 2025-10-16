@@ -17,7 +17,7 @@
     "jsxFactory": "h",
     "jsxFragmentFactory": "Fragment",
     "skipLibCheck": true,
-    "types": ["@stencil/core/testing"]
+    "types": ["@stencil/core/testing", "jest", "node"]
   },
   "include": [
     "src"
@@ -26,9 +26,7 @@
     "node_modules",
     "**/*.stories.ts",
     "**/*.stories.tsx",
-    "**/*.mdx",
-    "**/*.spec.ts",
-    "test-setup.ts"
+    "**/*.mdx"
   ]
 }
 

@@ -29,7 +29,9 @@ export class DsMenuItem {
   @State() isHovered: boolean = false;
 
   /**
-   * Emitido quando o item é selecionado
+   * Emitido quando o item é clicado/selecionado.
+   * O componente pai é responsável por gerenciar o estado de seleção.
+   * Payload: { value: any, index: number }
    */
   @Event() dsSelect: EventEmitter<any>;
 
@@ -37,8 +39,7 @@ export class DsMenuItem {
     if (!this.disabled) {
       this.dsSelect.emit({
         value: this.value,
-        index: this.index,
-        selected: !this.selected
+        index: this.index
       });
     }
   };

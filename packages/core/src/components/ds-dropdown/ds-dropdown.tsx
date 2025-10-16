@@ -1,5 +1,13 @@
 import { Component, Prop, Event, EventEmitter, h, Host, State, Watch, Listen, Element } from '@stencil/core';
 
+interface FilteredMenuItem {
+  element: Element;
+  index: number;
+  title: string;
+  subtitle: string;
+  visible: boolean;
+}
+
 @Component({
   tag: 'ds-dropdown',
   styleUrl: 'ds-dropdown.css',
@@ -7,6 +15,9 @@ import { Component, Prop, Event, EventEmitter, h, Host, State, Watch, Listen, El
 })
 export class DsDropdown {
   @Element() el: HTMLElement;
+
+  // Constante para o espaço mínimo necessário para posicionamento
+  private readonly MIN_SPACE_THRESHOLD = 200;
 
   /**
    * Valor selecionado
@@ -69,7 +80,10 @@ export class DsDropdown {
   @Prop() errorText?: string;
 
   @State() isOpen: boolean = false;
-  @State() filteredOptions: any[] = [];
+  @State() filteredOptions: FilteredMenuItem[] = [];
+  
+  // Estado privado para controlar posicionamento interno
+  private _positionVariant: 'top' | 'bottom' = 'bottom';
   @State() selectedItems: any[] = [];
   @State() activeIndex: number = -1;
   @State() searchTerm: string = '';
@@ -102,7 +116,7 @@ export class DsDropdown {
 
   @Watch('errorText')
   watchErrorText(newValue: string) {
-    this.hasError = newValue !== '';
+    this.hasError = newValue != null && newValue !== '';
   }
 
   @Watch('searchTerm')
@@ -110,8 +124,22 @@ export class DsDropdown {
     this.filterOptions(newValue);
   }
 
+  @Watch('value')
+  watchValue() {
+    this.updateSelectedItems();
+  }
+
   componentWillLoad() {
-    this.hasError = this.errorText !== '';
+    this.hasError = this.errorText != null && this.errorText !== '';
+  }
+
+  componentDidLoad() {
+    // Inicializar estado dos itens selecionados após o componente carregar
+    this.updateSelectedItems();
+    // Inicializar itens filtrados
+    this.filterOptions(this.searchTerm);
+    // Aplicar visibilidade inicial
+    this.applyVisibility();
   }
 
   private get dropdownId(): string {
@@ -133,7 +161,7 @@ export class DsDropdown {
 
   private filterOptions(searchTerm: string) {
     const menuItems = this.el.querySelectorAll('ds-menu-item');
-    const filteredItems: any[] = [];
+    const filteredItems: FilteredMenuItem[] = [];
     
     menuItems.forEach((item, index) => {
       const content = item.querySelector('ds-menu-item-content');
@@ -141,25 +169,30 @@ export class DsDropdown {
         const title = content.getAttribute('title') || '';
         const subtitle = content.getAttribute('subtitle') || '';
         const searchText = `${title} ${subtitle}`.toLowerCase();
+        const isVisible = searchText.includes(searchTerm.toLowerCase());
         
-        if (searchText.includes(searchTerm.toLowerCase())) {
-          filteredItems.push({
-            element: item,
-            index: index,
-            title: title,
-            subtitle: subtitle
-          });
-        }
+        filteredItems.push({
+          element: item,
+          index: index,
+          title: title,
+          subtitle: subtitle,
+          visible: isVisible
+        });
       }
     });
     
     this.filteredOptions = filteredItems;
-    
-          // Atualizar visibilidade dos itens
-          menuItems.forEach((item, index) => {
-            const isVisible = filteredItems.some(filtered => filtered.index === index);
-            (item as unknown as HTMLElement).style.display = isVisible ? 'block' : 'none';
-          });
+    this.applyVisibility();
+  }
+
+  private applyVisibility() {
+    this.filteredOptions.forEach((item) => {
+      const element = item.element as HTMLElement;
+      if (element) {
+        element.style.display = item.visible ? 'block' : 'none';
+        element.classList.toggle('ds-dropdown__menu-item--hidden', !item.visible);
+      }
+    });
   }
 
   private toggleDropdown = () => {
@@ -186,20 +219,18 @@ export class DsDropdown {
     const spaceBelow = viewportHeight - triggerRect.bottom;
     const spaceAbove = triggerRect.top;
     
-    // Se não há espaço suficiente abaixo, mostrar acima
-    if (spaceBelow < 200 && spaceAbove > spaceBelow) {
-      this.variant = 'top';
-      overlay.style.top = 'auto';
-      overlay.style.bottom = '100%';
-      overlay.style.marginTop = '0';
-      overlay.style.marginBottom = '4px';
-    } else {
-      this.variant = 'bottom';
-      overlay.style.top = '100%';
-      overlay.style.bottom = 'auto';
-      overlay.style.marginTop = '4px';
-      overlay.style.marginBottom = '0';
-    }
+    // Determinar posição baseada no espaço disponível
+    const shouldPositionTop = spaceBelow < this.MIN_SPACE_THRESHOLD && spaceAbove > spaceBelow;
+    this._positionVariant = shouldPositionTop ? 'top' : 'bottom';
+    
+    // Remover classes de posicionamento existentes
+    overlay.classList.remove('ds-dropdown__overlay--top', 'ds-dropdown__overlay--bottom');
+    
+    // Adicionar classe de posicionamento apropriada
+    overlay.classList.add(`ds-dropdown__overlay--${this._positionVariant}`);
+    
+    // Definir data-attribute para referência adicional
+    overlay.setAttribute('data-position', this._positionVariant);
   }
 
   private closeDropdown = () => {
@@ -216,6 +247,36 @@ export class DsDropdown {
     this.dsBlur.emit();
   };
 
+
+  @Listen('dsSelect')
+  handleMenuItemSelect(event: CustomEvent) {
+    const { value } = event.detail;
+    
+    if (this.multiple) {
+      // Modo múltipla seleção - toggle do estado atual
+      if (Array.isArray(this.value)) {
+        if (this.value.includes(value)) {
+          // Remove se já está selecionado
+          this.value = this.value.filter(v => v !== value);
+        } else {
+          // Adiciona se não está selecionado
+          this.value = [...this.value, value];
+        }
+      } else {
+        this.value = [value];
+      }
+    } else {
+      // Modo seleção única
+      this.value = value;
+      this.closeDropdown();
+    }
+    
+    // Emitir evento de mudança apenas se o valor realmente mudou
+    this.emitChangeIfValueChanged(this.value);
+    
+    // Atualizar estado dos itens selecionados
+    this.updateSelectedItems();
+  }
 
   @Listen('keydown')
   handleKeyDown(event: KeyboardEvent) {
@@ -276,14 +337,13 @@ export class DsDropdown {
   private updateActiveItem() {
     const menuItems = this.el.querySelectorAll('ds-menu-item');
     menuItems.forEach((item, index) => {
-      const itemElement = item as unknown as HTMLElement;
       if (index === this.activeIndex) {
-        itemElement.setAttribute('tabindex', '0');
-        itemElement.setAttribute('aria-selected', 'true');
-        itemElement.focus();
+        item.setAttribute('tabindex', '0');
+        item.setAttribute('aria-selected', 'true');
+        (item as unknown as HTMLElement).focus();
       } else {
-        itemElement.setAttribute('tabindex', '-1');
-        itemElement.setAttribute('aria-selected', 'false');
+        item.setAttribute('tabindex', '-1');
+        item.setAttribute('aria-selected', 'false');
       }
     });
   }
@@ -291,11 +351,72 @@ export class DsDropdown {
   private selectActive() {
     const menuItems = this.el.querySelectorAll('ds-menu-item');
     if (this.activeIndex >= 0 && this.activeIndex < menuItems.length) {
-      const activeItem = menuItems[this.activeIndex] as any;
-      if (activeItem && !activeItem.disabled) {
-        activeItem.click();
+      const activeItem = menuItems[this.activeIndex];
+      if (activeItem && !(activeItem as any).disabled) {
+        (activeItem as unknown as HTMLElement).click();
       }
     }
+  }
+
+  private updateSelectedItems() {
+    const menuItems = this.el.querySelectorAll('ds-menu-item');
+    menuItems.forEach((item) => {
+      const itemValue = (item as any).value;
+      let isSelected = false;
+      
+      if (this.multiple && Array.isArray(this.value)) {
+        isSelected = this.value.includes(itemValue);
+      } else if (!this.multiple) {
+        isSelected = this.value === itemValue;
+      }
+      
+      (item as any).selected = isSelected;
+    });
+  }
+
+  /**
+   * Emite o evento dsChange apenas se o valor realmente mudou
+   */
+  private emitChangeIfValueChanged(newValue: any) {
+    // Verificar se o valor realmente mudou para evitar emissões duplicadas
+    const hasChanged = this.multiple 
+      ? !this.arraysEqual(this.value as string[], newValue as string[])
+      : this.value !== newValue;
+    
+    if (hasChanged) {
+      this.dsChange.emit(newValue);
+    }
+  }
+
+  /**
+   * Compara dois arrays para verificar se são iguais
+   */
+  private arraysEqual(arr1: string[], arr2: string[]): boolean {
+    if (!Array.isArray(arr1) || !Array.isArray(arr2)) return false;
+    if (arr1.length !== arr2.length) return false;
+    
+    const sorted1 = [...arr1].sort();
+    const sorted2 = [...arr2].sort();
+    
+    return sorted1.every((val, index) => val === sorted2[index]);
+  }
+
+  private getDisplayValue(): string {
+    if (this.placeholder && !this.value) {
+      return this.placeholder;
+    }
+    
+    if (this.multiple && Array.isArray(this.value)) {
+      if (this.value.length === 0) {
+        return this.placeholder || '';
+      }
+      if (this.value.length === 1) {
+        return String(this.value[0]);
+      }
+      return `${this.value.length} itens selecionados`;
+    }
+    
+    return String(this.value || '');
   }
 
   render() {
@@ -339,7 +460,7 @@ export class DsDropdown {
           aria-describedby={this.describedBy}
         >
             <span class="ds-dropdown__value">
-              {this.placeholder && !this.value ? this.placeholder : this.value}
+              {this.getDisplayValue()}
             </span>
             <span class="ds-dropdown__arrow" aria-hidden="true">
               {this.isOpen ? '▲' : '▼'}

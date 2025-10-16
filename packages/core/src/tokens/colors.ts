@@ -42,6 +42,8 @@ export const structureColors = {
   bgBase: '#ffffff',
   /** Cor de fundo desabilitado (rgba(255, 255, 255, 0.25)) */
   bgBaseDisabled: 'rgba(255, 255, 255, 0.25)',
+  /** Cor de fundo para seleção (#f8f9fa) */
+  selectionBackground: '#f8f9fa',
   /** Cor da borda principal (#adb5bd) */
   borderColor: '#adb5bd',
   /** Cor da borda secundária (#dee2e6) */

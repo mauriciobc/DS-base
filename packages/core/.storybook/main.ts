@@ -14,10 +14,13 @@ const config: StorybookConfig = {
     autodocs: 'tag',
   },
   viteFinal: async (config) => {
-    // Configuração para Stencil
+    // Configuração para Stencil - preserva variáveis de ambiente existentes
     config.define = {
       ...config.define,
-      'process.env': {},
+      'process.env': {
+        NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'development'),
+        // Adicione aqui outras variáveis específicas se necessário
+      },
     };
     
     // Configuração para resolver módulos Stencil
@@ -25,7 +28,7 @@ const config: StorybookConfig = {
       ...config.resolve,
       alias: {
         ...config.resolve?.alias,
-        '@stencil/core': '@stencil/core/dist/index.js',
+        '@stencil/core': '@stencil/core/internal/client',
       },
     };
     

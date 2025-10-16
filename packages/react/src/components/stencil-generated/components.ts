@@ -7,15 +7,32 @@
 
 /* eslint-disable */
 
+import { DsAvatar as DsAvatarElement, defineCustomElement as defineDsAvatar } from "@ds-base/core/dist/components/ds-avatar.js";
 import { DsButton as DsButtonElement, defineCustomElement as defineDsButton } from "@ds-base/core/dist/components/ds-button.js";
 import { DsCheckboxGroup as DsCheckboxGroupElement, defineCustomElement as defineDsCheckboxGroup } from "@ds-base/core/dist/components/ds-checkbox-group.js";
+import { DsCheckbox as DsCheckboxElement, defineCustomElement as defineDsCheckbox } from "@ds-base/core/dist/components/ds-checkbox.js";
+import { DsDropdownItem as DsDropdownItemElement, defineCustomElement as defineDsDropdownItem } from "@ds-base/core/dist/components/ds-dropdown-item.js";
+import { DsDropdown as DsDropdownElement, defineCustomElement as defineDsDropdown } from "@ds-base/core/dist/components/ds-dropdown.js";
 import { DsInput as DsInputElement, defineCustomElement as defineDsInput } from "@ds-base/core/dist/components/ds-input.js";
+import { DsMenuItemContent as DsMenuItemContentElement, defineCustomElement as defineDsMenuItemContent } from "@ds-base/core/dist/components/ds-menu-item-content.js";
+import { DsMenuItem as DsMenuItemElement, defineCustomElement as defineDsMenuItem } from "@ds-base/core/dist/components/ds-menu-item.js";
 import { DsRadioGroup as DsRadioGroupElement, defineCustomElement as defineDsRadioGroup } from "@ds-base/core/dist/components/ds-radio-group.js";
 import { DsSelect as DsSelectElement, defineCustomElement as defineDsSelect } from "@ds-base/core/dist/components/ds-select.js";
 import { DsTextarea as DsTextareaElement, defineCustomElement as defineDsTextarea } from "@ds-base/core/dist/components/ds-textarea.js";
 import type { EventName, StencilReactComponent } from '@stencil/react-output-target/runtime';
 import { createComponent } from '@stencil/react-output-target/runtime';
 import React from 'react';
+
+type DsAvatarEvents = NonNullable<unknown>;
+
+export const DsAvatar: StencilReactComponent<DsAvatarElement, DsAvatarEvents> = /*@__PURE__*/ createComponent<DsAvatarElement, DsAvatarEvents>({
+    tagName: 'ds-avatar',
+    elementClass: DsAvatarElement,
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    react: React,
+    events: {} as DsAvatarEvents,
+    defineCustomElement: defineDsAvatar
+});
 
 type DsButtonEvents = NonNullable<unknown>;
 
@@ -28,6 +45,25 @@ export const DsButton: StencilReactComponent<DsButtonElement, DsButtonEvents> = 
     defineCustomElement: defineDsButton
 });
 
+type DsCheckboxEvents = {
+    onDsChange: EventName<CustomEvent<boolean>>,
+    onDsFocus: EventName<CustomEvent<void>>,
+    onDsBlur: EventName<CustomEvent<void>>
+};
+
+export const DsCheckbox: StencilReactComponent<DsCheckboxElement, DsCheckboxEvents> = /*@__PURE__*/ createComponent<DsCheckboxElement, DsCheckboxEvents>({
+    tagName: 'ds-checkbox',
+    elementClass: DsCheckboxElement,
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    react: React,
+    events: {
+        onDsChange: 'dsChange',
+        onDsFocus: 'dsFocus',
+        onDsBlur: 'dsBlur'
+    } as DsCheckboxEvents,
+    defineCustomElement: defineDsCheckbox
+});
+
 type DsCheckboxGroupEvents = { onDsChange: EventName<CustomEvent<string[]>> };
 
 export const DsCheckboxGroup: StencilReactComponent<DsCheckboxGroupElement, DsCheckboxGroupEvents> = /*@__PURE__*/ createComponent<DsCheckboxGroupElement, DsCheckboxGroupEvents>({
@@ -37,6 +73,40 @@ export const DsCheckboxGroup: StencilReactComponent<DsCheckboxGroupElement, DsCh
     react: React,
     events: { onDsChange: 'dsChange' } as DsCheckboxGroupEvents,
     defineCustomElement: defineDsCheckboxGroup
+});
+
+type DsDropdownEvents = {
+    onDsChange: EventName<CustomEvent<any>>,
+    onDsFocus: EventName<CustomEvent<void>>,
+    onDsBlur: EventName<CustomEvent<void>>,
+    onDsOpen: EventName<CustomEvent<void>>,
+    onDsClose: EventName<CustomEvent<void>>
+};
+
+export const DsDropdown: StencilReactComponent<DsDropdownElement, DsDropdownEvents> = /*@__PURE__*/ createComponent<DsDropdownElement, DsDropdownEvents>({
+    tagName: 'ds-dropdown',
+    elementClass: DsDropdownElement,
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    react: React,
+    events: {
+        onDsChange: 'dsChange',
+        onDsFocus: 'dsFocus',
+        onDsBlur: 'dsBlur',
+        onDsOpen: 'dsOpen',
+        onDsClose: 'dsClose'
+    } as DsDropdownEvents,
+    defineCustomElement: defineDsDropdown
+});
+
+type DsDropdownItemEvents = NonNullable<unknown>;
+
+export const DsDropdownItem: StencilReactComponent<DsDropdownItemElement, DsDropdownItemEvents> = /*@__PURE__*/ createComponent<DsDropdownItemElement, DsDropdownItemEvents>({
+    tagName: 'ds-dropdown-item',
+    elementClass: DsDropdownItemElement,
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    react: React,
+    events: {} as DsDropdownItemEvents,
+    defineCustomElement: defineDsDropdownItem
 });
 
 type DsInputEvents = {
@@ -58,6 +128,28 @@ export const DsInput: StencilReactComponent<DsInputElement, DsInputEvents> = /*@
         onDsBlur: 'dsBlur'
     } as DsInputEvents,
     defineCustomElement: defineDsInput
+});
+
+type DsMenuItemEvents = { onDsSelect: EventName<CustomEvent<any>> };
+
+export const DsMenuItem: StencilReactComponent<DsMenuItemElement, DsMenuItemEvents> = /*@__PURE__*/ createComponent<DsMenuItemElement, DsMenuItemEvents>({
+    tagName: 'ds-menu-item',
+    elementClass: DsMenuItemElement,
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    react: React,
+    events: { onDsSelect: 'dsSelect' } as DsMenuItemEvents,
+    defineCustomElement: defineDsMenuItem
+});
+
+type DsMenuItemContentEvents = NonNullable<unknown>;
+
+export const DsMenuItemContent: StencilReactComponent<DsMenuItemContentElement, DsMenuItemContentEvents> = /*@__PURE__*/ createComponent<DsMenuItemContentElement, DsMenuItemContentEvents>({
+    tagName: 'ds-menu-item-content',
+    elementClass: DsMenuItemContentElement,
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    react: React,
+    events: {} as DsMenuItemContentEvents,
+    defineCustomElement: defineDsMenuItemContent
 });
 
 type DsRadioGroupEvents = { onDsChange: EventName<CustomEvent<string>> };

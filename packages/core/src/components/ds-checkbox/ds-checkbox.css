@@ -1,0 +1,167 @@
+:host {
+  display: inline-flex;
+  cursor: pointer;
+  
+  /* Design Tokens - CSS Variables */
+  --checkbox-size: 20px;
+  --checkbox-border-radius: 4px;
+  --checkbox-spacing: 8px;
+  --checkbox-border-width: 1px;
+  
+  /* Colors - Baseado nos tokens do Figma */
+  --checkbox-bg-default: #ffffff;
+  --checkbox-border-default: rgba(24, 24, 24, 0.06);
+  --checkbox-border-hover: #1971c2; /* bluePalette.blue8 */
+  --checkbox-bg-checked: #008fff; /* coiBranding.light.primary200 */
+  --checkbox-border-checked: #0071c8; /* coiBranding.light.primary400 */
+  --checkbox-bg-hover-checked: #00b8ff; /* coiBranding.light.primary100 */
+  --checkbox-border-hover-checked: #008fff; /* coiBranding.light.primary200 */
+  --checkbox-bg-focus-indeterminate: #228be6; /* bluePalette.blue6 */
+  --checkbox-border-focus-indeterminate: #1971c2; /* bluePalette.blue8 */
+  --checkbox-bg-disabled: rgba(255, 255, 255, 0.25);
+  
+  /* Effects - Shadows do Figma */
+  --checkbox-shadow-checked: 0px 2px 0px 0px inset rgba(255, 255, 255, 0.25);
+  --checkbox-shadow-focus: 0px 0px 8px 2px inset rgba(0, 100, 203, 0.5);
+  --checkbox-icon-shadow: drop-shadow(0px 1px 0.5px rgba(24, 24, 24, 0.05));
+  --checkbox-outer-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+:host(.ds-checkbox--disabled) {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.ds-checkbox__container {
+  display: flex;
+  align-items: center;
+  gap: var(--checkbox-spacing);
+}
+
+.ds-checkbox__input-wrapper {
+  position: relative;
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.ds-checkbox__input {
+  /* Hidden but accessible */
+  position: absolute;
+  opacity: 0;
+  width: var(--checkbox-size);
+  height: var(--checkbox-size);
+  margin: 0;
+  cursor: pointer;
+}
+
+.ds-checkbox__input:disabled {
+  cursor: not-allowed;
+}
+
+.ds-checkbox__box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--checkbox-size);
+  height: var(--checkbox-size);
+  border: var(--checkbox-border-width) solid var(--checkbox-border-default);
+  border-radius: var(--checkbox-border-radius);
+  background-color: var(--checkbox-bg-default);
+  transition: all 0.2s ease;
+  position: relative;
+  box-shadow: var(--checkbox-outer-shadow);
+  pointer-events: none; /* Permite que cliques passem através para o input */
+}
+
+/* Hover - Unchecked */
+.ds-checkbox__input:hover:not(:disabled) + .ds-checkbox__box {
+  border-color: var(--checkbox-border-hover);
+}
+
+/* Hover - Checked */
+.ds-checkbox__input:hover:not(:disabled):checked + .ds-checkbox__box {
+  background-color: var(--checkbox-bg-hover-checked);
+  border-color: var(--checkbox-border-hover-checked);
+  box-shadow: var(--checkbox-outer-shadow), var(--checkbox-shadow-checked);
+}
+
+/* Hover - Indeterminate */
+.ds-checkbox__input:hover:not(:disabled):indeterminate + .ds-checkbox__box {
+  background-color: var(--checkbox-bg-hover-checked);
+  border-color: var(--checkbox-border-hover-checked);
+  box-shadow: var(--checkbox-outer-shadow), var(--checkbox-shadow-checked);
+}
+
+/* Focus - Checked */
+.ds-checkbox__input:focus:checked + .ds-checkbox__box {
+  background-color: var(--checkbox-bg-checked);
+  border-color: var(--checkbox-border-checked);
+  box-shadow: var(--checkbox-outer-shadow), var(--checkbox-shadow-checked), var(--checkbox-shadow-focus);
+}
+
+/* Focus - Indeterminate (estado especial com background diferente) */
+.ds-checkbox__input:focus:indeterminate + .ds-checkbox__box {
+  background-color: var(--checkbox-bg-focus-indeterminate);
+  border-color: var(--checkbox-border-focus-indeterminate);
+  box-shadow: var(--checkbox-outer-shadow), var(--checkbox-shadow-checked), var(--checkbox-shadow-focus);
+}
+
+/* Focus - Unchecked */
+.ds-checkbox__input:focus:not(:checked):not(:indeterminate) + .ds-checkbox__box {
+  outline: 2px solid var(--checkbox-border-hover);
+  outline-offset: 2px;
+}
+
+/* Checked */
+.ds-checkbox__input:checked + .ds-checkbox__box {
+  background-color: var(--checkbox-bg-checked);
+  border-color: var(--checkbox-border-checked);
+  box-shadow: var(--checkbox-outer-shadow), var(--checkbox-shadow-checked);
+}
+
+/* Indeterminate */
+.ds-checkbox__input:indeterminate + .ds-checkbox__box {
+  background-color: var(--checkbox-bg-checked);
+  border-color: var(--checkbox-border-checked);
+  box-shadow: var(--checkbox-outer-shadow), var(--checkbox-shadow-checked);
+}
+
+/* Disabled */
+.ds-checkbox__input:disabled + .ds-checkbox__box {
+  background-color: var(--checkbox-bg-disabled);
+  border-color: var(--checkbox-border-default);
+  box-shadow: none;
+}
+
+/* Icons - com drop shadow do Figma */
+.ds-checkbox__checkmark,
+.ds-checkbox__indeterminate {
+  width: 12px;
+  height: 12px;
+  color: #ffffff;
+  filter: drop-shadow(0px 1px 0.5px rgba(24, 24, 24, 0.05));
+  pointer-events: none; /* Permite que cliques passem através para o input */
+}
+
+/* Disabled icons - opacidade reduzida */
+:host(.ds-checkbox--disabled) .ds-checkbox__checkmark,
+:host(.ds-checkbox--disabled) .ds-checkbox__indeterminate {
+  opacity: 0.5;
+  filter: drop-shadow(0px 1px 0.5px rgba(24, 24, 24, 0.05));
+}
+
+/* Label */
+.ds-checkbox__label {
+  font-family: Lato, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  color: #0b1215;
+  cursor: pointer;
+  user-select: none;
+}
+
+:host(.ds-checkbox--disabled) .ds-checkbox__label {
+  color: rgba(11, 18, 21, 0.25);
+  cursor: not-allowed;
+}

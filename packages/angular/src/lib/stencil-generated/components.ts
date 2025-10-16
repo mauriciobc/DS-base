@@ -8,6 +8,28 @@ import { Components } from '@ds-base/core';
 
 
 @ProxyCmp({
+  inputs: ['alt', 'badge', 'badgePosition', 'initials', 'name', 'shape', 'size', 'src', 'status']
+})
+@Component({
+  selector: 'ds-avatar',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['alt', 'badge', 'badgePosition', 'initials', 'name', 'shape', 'size', 'src', 'status'],
+})
+export class DsAvatar {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface DsAvatar extends Components.DsAvatar {}
+
+
+@ProxyCmp({
   inputs: ['disabled', 'type', 'variant']
 })
 @Component({
@@ -27,6 +49,42 @@ export class DsButton {
 
 
 export declare interface DsButton extends Components.DsButton {}
+
+
+@ProxyCmp({
+  inputs: ['checked', 'disabled', 'indeterminate', 'label', 'name', 'required', 'value']
+})
+@Component({
+  selector: 'ds-checkbox',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['checked', 'disabled', 'indeterminate', 'label', 'name', 'required', 'value'],
+})
+export class DsCheckbox {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['dsChange', 'dsFocus', 'dsBlur']);
+  }
+}
+
+
+export declare interface DsCheckbox extends Components.DsCheckbox {
+  /**
+   * Emitted when the checkbox checked state changes
+   */
+  dsChange: EventEmitter<CustomEvent<boolean>>;
+  /**
+   * Emitted when the checkbox gains focus
+   */
+  dsFocus: EventEmitter<CustomEvent<void>>;
+  /**
+   * Emitted when the checkbox loses focus
+   */
+  dsBlur: EventEmitter<CustomEvent<void>>;
+}
 
 
 @ProxyCmp({
@@ -55,6 +113,72 @@ export declare interface DsCheckboxGroup extends Components.DsCheckboxGroup {
    */
   dsChange: EventEmitter<CustomEvent<string[]>>;
 }
+
+
+@ProxyCmp({
+  inputs: ['disabled', 'errorText', 'helpText', 'label', 'maxItems', 'multiple', 'name', 'placeholder', 'required', 'searchable', 'value', 'variant']
+})
+@Component({
+  selector: 'ds-dropdown',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['disabled', 'errorText', 'helpText', 'label', 'maxItems', 'multiple', 'name', 'placeholder', 'required', 'searchable', 'value', 'variant'],
+})
+export class DsDropdown {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['dsChange', 'dsFocus', 'dsBlur', 'dsOpen', 'dsClose']);
+  }
+}
+
+
+export declare interface DsDropdown extends Components.DsDropdown {
+  /**
+   * Emitido quando o valor muda
+   */
+  dsChange: EventEmitter<CustomEvent<any>>;
+  /**
+   * Emitido quando o dropdown ganha foco
+   */
+  dsFocus: EventEmitter<CustomEvent<void>>;
+  /**
+   * Emitido quando o dropdown perde foco
+   */
+  dsBlur: EventEmitter<CustomEvent<void>>;
+  /**
+   * Emitido quando o dropdown abre
+   */
+  dsOpen: EventEmitter<CustomEvent<void>>;
+  /**
+   * Emitido quando o dropdown fecha
+   */
+  dsClose: EventEmitter<CustomEvent<void>>;
+}
+
+
+@ProxyCmp({
+  inputs: ['position', 'variant']
+})
+@Component({
+  selector: 'ds-dropdown-item',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['position', 'variant'],
+})
+export class DsDropdownItem {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface DsDropdownItem extends Components.DsDropdownItem {}
 
 
 @ProxyCmp({
@@ -95,6 +219,56 @@ export declare interface DsInput extends Components.DsInput {
    */
   dsBlur: EventEmitter<CustomEvent<void>>;
 }
+
+
+@ProxyCmp({
+  inputs: ['disabled', 'index', 'selected', 'value']
+})
+@Component({
+  selector: 'ds-menu-item',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['disabled', 'index', 'selected', 'value'],
+})
+export class DsMenuItem {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['dsSelect']);
+  }
+}
+
+
+export declare interface DsMenuItem extends Components.DsMenuItem {
+  /**
+   * Emitido quando o item é selecionado
+   */
+  dsSelect: EventEmitter<CustomEvent<any>>;
+}
+
+
+@ProxyCmp({
+  inputs: ['content', 'itemTitle', 'overline', 'subtitle']
+})
+@Component({
+  selector: 'ds-menu-item-content',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['content', 'itemTitle', 'overline', 'subtitle'],
+})
+export class DsMenuItemContent {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface DsMenuItemContent extends Components.DsMenuItemContent {}
 
 
 @ProxyCmp({

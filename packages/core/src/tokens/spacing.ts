@@ -25,6 +25,8 @@ export const spacing = {
   rg: 12,
   /** Medium - 16px */
   md: 16,
+  /** Large - 24px */
+  lg: 24,
 } as const;
 
 /**

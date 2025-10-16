@@ -1,0 +1,214 @@
+/* Avatar Component - Estilos Estruturais (Unstyled) */
+
+:host {
+  --avatar-bg-elevated: #dee2e6;
+  --avatar-text-primary: #0b1215;
+  --avatar-radius-round: 1024px;
+}
+
+.avatar {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  /* Removido overflow: hidden para permitir que badge e status sejam visíveis */
+  flex-shrink: 0;
+}
+
+/* Shapes */
+.avatar--circle {
+  border-radius: var(--avatar-radius-round);
+}
+
+.avatar--square {
+  border-radius: 4px;
+}
+
+/* Sizes - Valores exatos do Figma */
+.avatar--xs {
+  width: 16px;
+  height: 16px;
+}
+
+.avatar--sm {
+  width: 20px;
+  height: 20px;
+}
+
+.avatar--md {
+  width: 32px;
+  height: 32px;
+}
+
+.avatar--lg {
+  width: 66px;
+  height: 66px;
+}
+
+.avatar--xl {
+  width: 88px;
+  height: 88px;
+}
+
+/* Content */
+.avatar__content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.avatar__initials {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Manrope', sans-serif;
+  font-weight: 600;
+  color: var(--avatar-text-primary);
+  line-height: 1;
+}
+
+.avatar__icon {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--avatar-text-primary);
+  background-color: var(--avatar-bg-elevated);
+}
+
+.avatar__icon svg {
+  width: 60%;
+  height: 60%;
+}
+
+/* Badge */
+.avatar__badge {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 4px;
+  border-radius: 9px;
+  font-size: 0.75em;
+  font-weight: 600;
+  line-height: 1;
+  z-index: 2;
+  /* Forçar saída do fluxo flexbox */
+  margin: 0;
+  flex: none;
+  /* Garantir que não seja afetado pelo flexbox do container pai */
+  transform: translateZ(0);
+  /* Estilos visuais para tornar o badge visível */
+  background-color: #3b82f6;
+  color: white;
+  border: 2px solid white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.avatar__badge--top-right {
+  top: -4px;
+  right: -4px;
+}
+
+.avatar__badge--bottom-right {
+  bottom: -4px;
+  right: -4px;
+}
+
+/* Garantir que o badge não seja afetado pelo flexbox do container pai */
+.avatar .avatar__badge {
+  /* Forçar posicionamento absoluto independente do flexbox */
+  position: absolute !important;
+  /* Remover qualquer influência do flexbox */
+  align-self: auto;
+  order: 0;
+  /* NÃO resetar as propriedades de posição específicas das classes */
+}
+
+/* Status */
+.avatar__status {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 2px solid white;
+  z-index: 1;
+  /* Garantir que o status não seja afetado pelo flexbox do container pai */
+  margin: 0;
+  flex: none;
+  transform: translateZ(0);
+}
+
+.avatar__status--top-right {
+  top: 0px;
+  right: 0px;
+}
+
+.avatar__status--bottom-right {
+  bottom: 0px;
+  right: 0px;
+}
+
+/* Status colors - apenas para demonstração, será sobrescrito pelo design system */
+.avatar__status--online {
+  background-color: #10b981;
+}
+
+.avatar__status--offline {
+  background-color: #6b7280;
+}
+
+.avatar__status--away {
+  background-color: #f59e0b;
+}
+
+.avatar__status--busy {
+  background-color: #ef4444;
+}
+
+/* Tamanhos de fonte para iniciais - Valores exatos do Figma */
+.avatar--xs .avatar__initials {
+  font-size: 8px;
+}
+
+.avatar--sm .avatar__initials {
+  font-size: 12px;
+}
+
+.avatar--md .avatar__initials {
+  font-size: 16px;
+}
+
+.avatar--lg .avatar__initials {
+  font-size: 24px;
+}
+
+.avatar--xl .avatar__initials {
+  font-size: 28px;
+}
+
+/* Responsive adjustments for very small sizes */
+.avatar--xs .avatar__badge {
+  min-width: 14px;
+  height: 14px;
+  font-size: 0.625em;
+}
+
+.avatar--xs .avatar__status {
+  width: 6px;
+  height: 6px;
+}

@@ -1,0 +1,94 @@
+:host {
+  --dropdown-item-arrow-width: 24px;
+  --dropdown-item-arrow-height: 12px;
+  --dropdown-item-arrow-padding: var(--ds-spacing-lg, 24px);
+  --dropdown-item-content-bg: var(--ds-color-structure-bg-base);
+  --dropdown-item-content-border: var(--ds-color-structure-border-color);
+  --dropdown-item-content-radius: 16px;
+  --dropdown-item-content-padding-h: var(--ds-spacing-rg, 12px);
+  --dropdown-item-content-padding-v: var(--ds-spacing-md, 16px);
+  --dropdown-item-content-gap: 2px;
+  --dropdown-item-shadow: var(--ds-shadow-popover, 0 2px 8px rgba(0, 0, 0, 0.1));
+}
+
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ds-dropdown-item__arrow {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding-left: var(--dropdown-item-arrow-padding);
+  padding-right: var(--dropdown-item-arrow-padding);
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.ds-dropdown-item__arrow--top {
+  order: -1;
+}
+
+.ds-dropdown-item__arrow--bottom {
+  order: 1;
+}
+
+/* Alinhamento da seta */
+.ds-dropdown-item--arrow-left .ds-dropdown-item__arrow {
+  justify-content: flex-start;
+}
+
+.ds-dropdown-item--arrow-middle .ds-dropdown-item__arrow {
+  justify-content: center;
+}
+
+.ds-dropdown-item--arrow-right .ds-dropdown-item__arrow {
+  justify-content: flex-end;
+}
+
+.ds-dropdown-item__arrow-icon {
+  width: var(--dropdown-item-arrow-width);
+  height: var(--dropdown-item-arrow-height);
+  display: block;
+}
+
+.ds-dropdown-item__content {
+  background: var(--dropdown-item-content-bg);
+  border: 1px solid var(--dropdown-item-content-border);
+  border-radius: var(--dropdown-item-content-radius);
+  padding-left: var(--dropdown-item-content-padding-h);
+  padding-right: var(--dropdown-item-content-padding-h);
+  padding-top: var(--dropdown-item-content-padding-v);
+  padding-bottom: var(--dropdown-item-content-padding-v);
+  display: flex;
+  flex-direction: column;
+  gap: var(--dropdown-item-content-gap);
+  width: 100%;
+  box-sizing: border-box;
+  box-shadow: var(--dropdown-item-shadow);
+}
+
+/* Posicionamento */
+.ds-dropdown-item--relative {
+  position: relative;
+}
+
+.ds-dropdown-item--absolute {
+  position: absolute;
+  z-index: 1000;
+}
+
+/* Variações */
+.ds-dropdown-item--noarrow .ds-dropdown-item__arrow {
+  display: none;
+}
+
+.ds-dropdown-item--top .ds-dropdown-item__arrow--bottom {
+  display: none;
+}
+
+.ds-dropdown-item--bottom .ds-dropdown-item__arrow--top {
+  display: none;
+}

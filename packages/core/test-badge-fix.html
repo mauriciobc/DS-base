@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
+    <title>Teste Badge Fix</title>
+
+    <script type="module" src="/build/ds-base.esm.js"></script>
+    <script nomodule src="/build/ds-base.js"></script>
+    <style>
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        margin: 0;
+        padding: 2rem;
+        background: #f5f5f5;
+      }
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        background: white;
+        padding: 2rem;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      }
+      .test-section {
+        margin: 2rem 0;
+        padding: 1rem;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+      }
+      .test-section h3 {
+        color: #333;
+        margin-bottom: 1rem;
+      }
+      .avatar-group {
+        display: flex;
+        gap: 2rem;
+        align-items: center;
+        margin: 1rem 0;
+      }
+      .avatar-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .avatar-label {
+        font-size: 0.875rem;
+        color: #666;
+        text-align: center;
+      }
+      .expected {
+        background: #e8f5e8;
+        padding: 0.5rem;
+        border-radius: 4px;
+        margin: 0.5rem 0;
+        font-size: 0.875rem;
+        color: #2d5a2d;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>✅ Teste de Correção do Badge</h1>
+      <p>Verificando se o badge agora aparece nas posições corretas (top-right e bottom-right)</p>
+
+      <div class="test-section">
+        <h3>🔝 Badge Top-Right (Esperado: canto superior direito)</h3>
+        <div class="expected">
+          <strong>Esperado:</strong> Badge deve aparecer no canto superior direito do avatar
+        </div>
+        <div class="avatar-group">
+          <div class="avatar-item">
+            <ds-avatar name="João Silva" badge="3" badge-position="top-right" size="lg"></ds-avatar>
+            <div class="avatar-label">Top-Right (LG)</div>
+          </div>
+          <div class="avatar-item">
+            <ds-avatar name="Maria" badge="5" badge-position="top-right" size="md"></ds-avatar>
+            <div class="avatar-label">Top-Right (MD)</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="test-section">
+        <h3>🔻 Badge Bottom-Right (Esperado: canto inferior direito)</h3>
+        <div class="expected">
+          <strong>Esperado:</strong> Badge deve aparecer no canto inferior direito do avatar
+        </div>
+        <div class="avatar-group">
+          <div class="avatar-item">
+            <ds-avatar name="Pedro" badge="7" badge-position="bottom-right" size="lg"></ds-avatar>
+            <div class="avatar-label">Bottom-Right (LG)</div>
+          </div>
+          <div class="avatar-item">
+            <ds-avatar name="Ana" badge="2" badge-position="bottom-right" size="md"></ds-avatar>
+            <div class="avatar-label">Bottom-Right (MD)</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="test-section">
+        <h3>🔄 Comparação - Antes vs Depois</h3>
+        <div class="expected">
+          <strong>Esperado:</strong> Badge deve estar posicionado corretamente, não centralizado
+        </div>
+        <div class="avatar-group">
+          <div class="avatar-item">
+            <ds-avatar name="Sem Badge" size="lg"></ds-avatar>
+            <div class="avatar-label">Sem Badge</div>
+          </div>
+          <div class="avatar-item">
+            <ds-avatar name="Com Badge" badge="99" badge-position="top-right" size="lg"></ds-avatar>
+            <div class="avatar-label">Com Badge (Top-Right)</div>
+          </div>
+          <div class="avatar-item">
+            <ds-avatar name="Com Badge" badge="88" badge-position="bottom-right" size="lg"></ds-avatar>
+            <div class="avatar-label">Com Badge (Bottom-Right)</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="test-section">
+        <h3>📊 Diferentes Tamanhos</h3>
+        <div class="expected">
+          <strong>Esperado:</strong> Badge deve funcionar em todos os tamanhos
+        </div>
+        <div class="avatar-group">
+          <div class="avatar-item">
+            <ds-avatar name="XS" badge="1" badge-position="top-right" size="xs"></ds-avatar>
+            <div class="avatar-label">XS</div>
+          </div>
+          <div class="avatar-item">
+            <ds-avatar name="SM" badge="2" badge-position="top-right" size="sm"></ds-avatar>
+            <div class="avatar-label">SM</div>
+          </div>
+          <div class="avatar-item">
+            <ds-avatar name="MD" badge="3" badge-position="top-right" size="md"></ds-avatar>
+            <div class="avatar-label">MD</div>
+          </div>
+          <div class="avatar-item">
+            <ds-avatar name="LG" badge="4" badge-position="top-right" size="lg"></ds-avatar>
+            <div class="avatar-label">LG</div>
+          </div>
+          <div class="avatar-item">
+            <ds-avatar name="XL" badge="5" badge-position="top-right" size="xl"></ds-avatar>
+            <div class="avatar-label">XL</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

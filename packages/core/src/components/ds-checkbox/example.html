@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ds-checkbox Example</title>
+    <script type="module" src="../../../../dist/ds-base/ds-base.esm.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .example {
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        .example h3 {
+            margin-top: 0;
+            color: #333;
+        }
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+    </style>
+</head>
+<body>
+    <h1>ds-checkbox Component Examples</h1>
+    
+    <div class="example">
+        <h3>Checkbox Básico</h3>
+        <ds-checkbox label="Accept terms and conditions" value="terms"></ds-checkbox>
+    </div>
+
+    <div class="example">
+        <h3>Checkbox Marcado</h3>
+        <ds-checkbox label="Already checked" value="checked" checked></ds-checkbox>
+    </div>
+
+    <div class="example">
+        <h3>Checkbox Desabilitado</h3>
+        <ds-checkbox label="Disabled checkbox" value="disabled" disabled></ds-checkbox>
+    </div>
+
+    <div class="example">
+        <h3>Checkbox Obrigatório</h3>
+        <ds-checkbox label="Required field" value="required" required></ds-checkbox>
+    </div>
+
+    <div class="example">
+        <h3>Checkbox Indeterminado (Select All)</h3>
+        <ds-checkbox label="Select all options" value="all" indeterminate></ds-checkbox>
+    </div>
+
+    <div class="example">
+        <h3>Grupo de Checkboxes</h3>
+        <ds-checkbox-group label="Choose your interests" name="interests">
+            <ds-checkbox value="sports" label="Sports"></ds-checkbox>
+            <ds-checkbox value="music" label="Music"></ds-checkbox>
+            <ds-checkbox value="tech" label="Technology"></ds-checkbox>
+            <ds-checkbox value="travel" label="Travel"></ds-checkbox>
+        </ds-checkbox-group>
+    </div>
+
+    <div class="example">
+        <h3>Formulário Completo</h3>
+        <form>
+            <fieldset>
+                <legend>Newsletter Preferences</legend>
+                
+                <div class="checkbox-group">
+                    <ds-checkbox 
+                        name="newsletter" 
+                        value="daily" 
+                        label="Daily newsletter"
+                        required
+                    ></ds-checkbox>
+                    
+                    <ds-checkbox 
+                        name="newsletter" 
+                        value="weekly" 
+                        label="Weekly digest"
+                    ></ds-checkbox>
+                    
+                    <ds-checkbox 
+                        name="newsletter" 
+                        value="promotions" 
+                        label="Promotional offers"
+                    ></ds-checkbox>
+                    
+                    <ds-checkbox 
+                        name="newsletter" 
+                        value="events" 
+                        label="Event notifications"
+                    ></ds-checkbox>
+                </div>
+            </fieldset>
+            
+            <button type="submit" style="margin-top: 16px; padding: 8px 16px;">Subscribe</button>
+        </form>
+    </div>
+
+    <script>
+        // Exemplo de interação com eventos
+        document.addEventListener('DOMContentLoaded', () => {
+            const checkboxes = document.querySelectorAll('ds-checkbox');
+            
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('dsChange', (event) => {
+                    console.log('Checkbox changed:', event.detail);
+                });
+                
+                checkbox.addEventListener('dsFocus', () => {
+                    console.log('Checkbox focused');
+                });
+                
+                checkbox.addEventListener('dsBlur', () => {
+                    console.log('Checkbox blurred');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -32,6 +32,8 @@ import { radius as radiusImport } from './radius';
 import { branding as brandingImport } from './branding';
 import { structure as structureImport } from './structure';
 import { system as systemImport } from './system';
+import { shadows as shadowsImport } from './shadows';
+import { dropdownTokens as dropdownTokensImport } from './dropdown';
 
 // Exportar todos os tokens de cores
 export {
@@ -176,6 +178,27 @@ export type {
   ClockState,
 } from './system';
 
+// Exportar todos os tokens de sombras
+export {
+  shadows,
+  shadowTokens,
+  getShadow,
+  customShadow,
+} from './shadows';
+
+export type {
+  ShadowToken,
+} from './shadows';
+
+// Exportar tokens específicos do dropdown
+export {
+  dropdownTokens,
+} from './dropdown';
+
+export type {
+  DropdownTokens,
+} from './dropdown';
+
 /**
  * Objeto consolidado com todos os tokens
  * Útil quando você precisa acessar múltiplas categorias
@@ -189,6 +212,8 @@ export const tokens = {
   branding: brandingImport,
   structure: structureImport,
   system: systemImport,
+  shadows: shadowsImport,
+  dropdown: dropdownTokensImport,
 } as const;
 
 /**

@@ -6,6 +6,47 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
+    interface DsAvatar {
+        /**
+          * Texto alternativo para a imagem
+         */
+        "alt"?: string;
+        /**
+          * Texto do badge
+         */
+        "badge"?: string;
+        /**
+          * Posição do badge
+          * @default 'bottom-right'
+         */
+        "badgePosition": 'top-right' | 'bottom-right';
+        /**
+          * Iniciais customizadas (sobrescreve geração automática)
+         */
+        "initials"?: string;
+        /**
+          * Nome para gerar iniciais automaticamente
+         */
+        "name"?: string;
+        /**
+          * Forma do avatar
+          * @default 'circle'
+         */
+        "shape": 'circle' | 'square';
+        /**
+          * Tamanho do avatar
+          * @default 'md'
+         */
+        "size": 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+        /**
+          * URL da imagem do avatar
+         */
+        "src"?: string;
+        /**
+          * Status do usuário
+         */
+        "status"?: 'online' | 'offline' | 'away' | 'busy';
+    }
     interface DsButton {
         /**
           * If true, the button is disabled
@@ -22,6 +63,43 @@ export namespace Components {
           * @default 'primary'
          */
         "variant": 'primary' | 'secondary' | 'tertiary';
+    }
+    interface DsCheckbox {
+        /**
+          * The checkbox checked state
+          * @default false
+         */
+        "checked": boolean;
+        /**
+          * If true, the checkbox is disabled
+          * @default false
+         */
+        "disabled": boolean;
+        /**
+          * If true, the checkbox is in indeterminate state
+          * @default false
+         */
+        "indeterminate": boolean;
+        /**
+          * The checkbox label text
+          * @default ''
+         */
+        "label": string;
+        /**
+          * The checkbox name for grouping
+          * @default ''
+         */
+        "name": string;
+        /**
+          * If true, the checkbox is required
+          * @default false
+         */
+        "required": boolean;
+        /**
+          * The checkbox value for forms
+          * @default ''
+         */
+        "value": string;
     }
     interface DsCheckboxGroup {
         /**
@@ -59,6 +137,76 @@ export namespace Components {
           * @default false
          */
         "required": boolean;
+    }
+    interface DsDropdown {
+        /**
+          * Se o dropdown está desabilitado
+          * @default false
+         */
+        "disabled": boolean;
+        /**
+          * Texto de erro
+         */
+        "errorText"?: string;
+        /**
+          * Texto de ajuda
+         */
+        "helpText"?: string;
+        /**
+          * Label do dropdown
+         */
+        "label"?: string;
+        /**
+          * Limite de itens visíveis
+          * @default 9
+         */
+        "maxItems": number;
+        /**
+          * Se permite seleção múltipla
+          * @default false
+         */
+        "multiple": boolean;
+        /**
+          * Nome do campo
+          * @default ''
+         */
+        "name": string;
+        /**
+          * Placeholder do dropdown
+         */
+        "placeholder"?: string;
+        /**
+          * Se o dropdown é obrigatório
+          * @default false
+         */
+        "required": boolean;
+        /**
+          * Se permite busca/filtro
+          * @default false
+         */
+        "searchable": boolean;
+        /**
+          * Valor selecionado
+          * @default ''
+         */
+        "value": string | string[];
+        /**
+          * Variação do dropdown
+          * @default 'noarrow'
+         */
+        "variant": 'noarrow' | 'top' | 'bottom';
+    }
+    interface DsDropdownItem {
+        /**
+          * Posicionamento do item
+          * @default 'relative'
+         */
+        "position": 'relative' | 'absolute';
+        /**
+          * Variação da seta
+          * @default 'noarrow'
+         */
+        "variant": 'noarrow' | 'top' | 'bottom';
     }
     interface DsInput {
         /**
@@ -132,6 +280,47 @@ export namespace Components {
           * @default ''
          */
         "value": string;
+    }
+    interface DsMenuItem {
+        /**
+          * Estado desabilitado do item
+          * @default false
+         */
+        "disabled": boolean;
+        /**
+          * Índice do item na lista
+          * @default 0
+         */
+        "index": number;
+        /**
+          * Estado de seleção do item
+          * @default false
+         */
+        "selected": boolean;
+        /**
+          * Valor do item
+         */
+        "value": any;
+    }
+    interface DsMenuItemContent {
+        /**
+          * Variação do conteúdo
+          * @default 'single'
+         */
+        "content": 'single' | 'double' | 'triple' | 'single-divider';
+        /**
+          * Texto principal do item
+          * @default ''
+         */
+        "itemTitle": string;
+        /**
+          * Texto acima do título
+         */
+        "overline"?: string;
+        /**
+          * Texto secundário do item
+         */
+        "subtitle"?: string;
     }
     interface DsRadioGroup {
         /**
@@ -292,13 +481,25 @@ export namespace Components {
         "value": string;
     }
 }
+export interface DsCheckboxCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLDsCheckboxElement;
+}
 export interface DsCheckboxGroupCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLDsCheckboxGroupElement;
 }
+export interface DsDropdownCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLDsDropdownElement;
+}
 export interface DsInputCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLDsInputElement;
+}
+export interface DsMenuItemCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLDsMenuItemElement;
 }
 export interface DsRadioGroupCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -313,11 +514,36 @@ export interface DsTextareaCustomEvent<T> extends CustomEvent<T> {
     target: HTMLDsTextareaElement;
 }
 declare global {
+    interface HTMLDsAvatarElement extends Components.DsAvatar, HTMLStencilElement {
+    }
+    var HTMLDsAvatarElement: {
+        prototype: HTMLDsAvatarElement;
+        new (): HTMLDsAvatarElement;
+    };
     interface HTMLDsButtonElement extends Components.DsButton, HTMLStencilElement {
     }
     var HTMLDsButtonElement: {
         prototype: HTMLDsButtonElement;
         new (): HTMLDsButtonElement;
+    };
+    interface HTMLDsCheckboxElementEventMap {
+        "dsChange": boolean;
+        "dsFocus": void;
+        "dsBlur": void;
+    }
+    interface HTMLDsCheckboxElement extends Components.DsCheckbox, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLDsCheckboxElementEventMap>(type: K, listener: (this: HTMLDsCheckboxElement, ev: DsCheckboxCustomEvent<HTMLDsCheckboxElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLDsCheckboxElementEventMap>(type: K, listener: (this: HTMLDsCheckboxElement, ev: DsCheckboxCustomEvent<HTMLDsCheckboxElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLDsCheckboxElement: {
+        prototype: HTMLDsCheckboxElement;
+        new (): HTMLDsCheckboxElement;
     };
     interface HTMLDsCheckboxGroupElementEventMap {
         "dsChange": string[];
@@ -335,6 +561,33 @@ declare global {
     var HTMLDsCheckboxGroupElement: {
         prototype: HTMLDsCheckboxGroupElement;
         new (): HTMLDsCheckboxGroupElement;
+    };
+    interface HTMLDsDropdownElementEventMap {
+        "dsChange": any;
+        "dsFocus": void;
+        "dsBlur": void;
+        "dsOpen": void;
+        "dsClose": void;
+    }
+    interface HTMLDsDropdownElement extends Components.DsDropdown, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLDsDropdownElementEventMap>(type: K, listener: (this: HTMLDsDropdownElement, ev: DsDropdownCustomEvent<HTMLDsDropdownElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLDsDropdownElementEventMap>(type: K, listener: (this: HTMLDsDropdownElement, ev: DsDropdownCustomEvent<HTMLDsDropdownElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLDsDropdownElement: {
+        prototype: HTMLDsDropdownElement;
+        new (): HTMLDsDropdownElement;
+    };
+    interface HTMLDsDropdownItemElement extends Components.DsDropdownItem, HTMLStencilElement {
+    }
+    var HTMLDsDropdownItemElement: {
+        prototype: HTMLDsDropdownItemElement;
+        new (): HTMLDsDropdownItemElement;
     };
     interface HTMLDsInputElementEventMap {
         "dsInput": string;
@@ -355,6 +608,29 @@ declare global {
     var HTMLDsInputElement: {
         prototype: HTMLDsInputElement;
         new (): HTMLDsInputElement;
+    };
+    interface HTMLDsMenuItemElementEventMap {
+        "dsSelect": any;
+    }
+    interface HTMLDsMenuItemElement extends Components.DsMenuItem, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLDsMenuItemElementEventMap>(type: K, listener: (this: HTMLDsMenuItemElement, ev: DsMenuItemCustomEvent<HTMLDsMenuItemElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLDsMenuItemElementEventMap>(type: K, listener: (this: HTMLDsMenuItemElement, ev: DsMenuItemCustomEvent<HTMLDsMenuItemElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLDsMenuItemElement: {
+        prototype: HTMLDsMenuItemElement;
+        new (): HTMLDsMenuItemElement;
+    };
+    interface HTMLDsMenuItemContentElement extends Components.DsMenuItemContent, HTMLStencilElement {
+    }
+    var HTMLDsMenuItemContentElement: {
+        prototype: HTMLDsMenuItemContentElement;
+        new (): HTMLDsMenuItemContentElement;
     };
     interface HTMLDsRadioGroupElementEventMap {
         "dsChange": string;
@@ -413,15 +689,62 @@ declare global {
         new (): HTMLDsTextareaElement;
     };
     interface HTMLElementTagNameMap {
+        "ds-avatar": HTMLDsAvatarElement;
         "ds-button": HTMLDsButtonElement;
+        "ds-checkbox": HTMLDsCheckboxElement;
         "ds-checkbox-group": HTMLDsCheckboxGroupElement;
+        "ds-dropdown": HTMLDsDropdownElement;
+        "ds-dropdown-item": HTMLDsDropdownItemElement;
         "ds-input": HTMLDsInputElement;
+        "ds-menu-item": HTMLDsMenuItemElement;
+        "ds-menu-item-content": HTMLDsMenuItemContentElement;
         "ds-radio-group": HTMLDsRadioGroupElement;
         "ds-select": HTMLDsSelectElement;
         "ds-textarea": HTMLDsTextareaElement;
     }
 }
 declare namespace LocalJSX {
+    interface DsAvatar {
+        /**
+          * Texto alternativo para a imagem
+         */
+        "alt"?: string;
+        /**
+          * Texto do badge
+         */
+        "badge"?: string;
+        /**
+          * Posição do badge
+          * @default 'bottom-right'
+         */
+        "badgePosition"?: 'top-right' | 'bottom-right';
+        /**
+          * Iniciais customizadas (sobrescreve geração automática)
+         */
+        "initials"?: string;
+        /**
+          * Nome para gerar iniciais automaticamente
+         */
+        "name"?: string;
+        /**
+          * Forma do avatar
+          * @default 'circle'
+         */
+        "shape"?: 'circle' | 'square';
+        /**
+          * Tamanho do avatar
+          * @default 'md'
+         */
+        "size"?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+        /**
+          * URL da imagem do avatar
+         */
+        "src"?: string;
+        /**
+          * Status do usuário
+         */
+        "status"?: 'online' | 'offline' | 'away' | 'busy';
+    }
     interface DsButton {
         /**
           * If true, the button is disabled
@@ -438,6 +761,55 @@ declare namespace LocalJSX {
           * @default 'primary'
          */
         "variant"?: 'primary' | 'secondary' | 'tertiary';
+    }
+    interface DsCheckbox {
+        /**
+          * The checkbox checked state
+          * @default false
+         */
+        "checked"?: boolean;
+        /**
+          * If true, the checkbox is disabled
+          * @default false
+         */
+        "disabled"?: boolean;
+        /**
+          * If true, the checkbox is in indeterminate state
+          * @default false
+         */
+        "indeterminate"?: boolean;
+        /**
+          * The checkbox label text
+          * @default ''
+         */
+        "label"?: string;
+        /**
+          * The checkbox name for grouping
+          * @default ''
+         */
+        "name"?: string;
+        /**
+          * Emitted when the checkbox loses focus
+         */
+        "onDsBlur"?: (event: DsCheckboxCustomEvent<void>) => void;
+        /**
+          * Emitted when the checkbox checked state changes
+         */
+        "onDsChange"?: (event: DsCheckboxCustomEvent<boolean>) => void;
+        /**
+          * Emitted when the checkbox gains focus
+         */
+        "onDsFocus"?: (event: DsCheckboxCustomEvent<void>) => void;
+        /**
+          * If true, the checkbox is required
+          * @default false
+         */
+        "required"?: boolean;
+        /**
+          * The checkbox value for forms
+          * @default ''
+         */
+        "value"?: string;
     }
     interface DsCheckboxGroup {
         /**
@@ -479,6 +851,96 @@ declare namespace LocalJSX {
           * @default false
          */
         "required"?: boolean;
+    }
+    interface DsDropdown {
+        /**
+          * Se o dropdown está desabilitado
+          * @default false
+         */
+        "disabled"?: boolean;
+        /**
+          * Texto de erro
+         */
+        "errorText"?: string;
+        /**
+          * Texto de ajuda
+         */
+        "helpText"?: string;
+        /**
+          * Label do dropdown
+         */
+        "label"?: string;
+        /**
+          * Limite de itens visíveis
+          * @default 9
+         */
+        "maxItems"?: number;
+        /**
+          * Se permite seleção múltipla
+          * @default false
+         */
+        "multiple"?: boolean;
+        /**
+          * Nome do campo
+          * @default ''
+         */
+        "name"?: string;
+        /**
+          * Emitido quando o dropdown perde foco
+         */
+        "onDsBlur"?: (event: DsDropdownCustomEvent<void>) => void;
+        /**
+          * Emitido quando o valor muda
+         */
+        "onDsChange"?: (event: DsDropdownCustomEvent<any>) => void;
+        /**
+          * Emitido quando o dropdown fecha
+         */
+        "onDsClose"?: (event: DsDropdownCustomEvent<void>) => void;
+        /**
+          * Emitido quando o dropdown ganha foco
+         */
+        "onDsFocus"?: (event: DsDropdownCustomEvent<void>) => void;
+        /**
+          * Emitido quando o dropdown abre
+         */
+        "onDsOpen"?: (event: DsDropdownCustomEvent<void>) => void;
+        /**
+          * Placeholder do dropdown
+         */
+        "placeholder"?: string;
+        /**
+          * Se o dropdown é obrigatório
+          * @default false
+         */
+        "required"?: boolean;
+        /**
+          * Se permite busca/filtro
+          * @default false
+         */
+        "searchable"?: boolean;
+        /**
+          * Valor selecionado
+          * @default ''
+         */
+        "value"?: string | string[];
+        /**
+          * Variação do dropdown
+          * @default 'noarrow'
+         */
+        "variant"?: 'noarrow' | 'top' | 'bottom';
+    }
+    interface DsDropdownItem {
+        /**
+          * Posicionamento do item
+          * @default 'relative'
+         */
+        "position"?: 'relative' | 'absolute';
+        /**
+          * Variação da seta
+          * @default 'noarrow'
+         */
+        "variant"?: 'noarrow' | 'top' | 'bottom';
     }
     interface DsInput {
         /**
@@ -568,6 +1030,51 @@ declare namespace LocalJSX {
           * @default ''
          */
         "value"?: string;
+    }
+    interface DsMenuItem {
+        /**
+          * Estado desabilitado do item
+          * @default false
+         */
+        "disabled"?: boolean;
+        /**
+          * Índice do item na lista
+          * @default 0
+         */
+        "index"?: number;
+        /**
+          * Emitido quando o item é selecionado
+         */
+        "onDsSelect"?: (event: DsMenuItemCustomEvent<any>) => void;
+        /**
+          * Estado de seleção do item
+          * @default false
+         */
+        "selected"?: boolean;
+        /**
+          * Valor do item
+         */
+        "value"?: any;
+    }
+    interface DsMenuItemContent {
+        /**
+          * Variação do conteúdo
+          * @default 'single'
+         */
+        "content"?: 'single' | 'double' | 'triple' | 'single-divider';
+        /**
+          * Texto principal do item
+          * @default ''
+         */
+        "itemTitle"?: string;
+        /**
+          * Texto acima do título
+         */
+        "overline"?: string;
+        /**
+          * Texto secundário do item
+         */
+        "subtitle"?: string;
     }
     interface DsRadioGroup {
         /**
@@ -760,9 +1267,15 @@ declare namespace LocalJSX {
         "value"?: string;
     }
     interface IntrinsicElements {
+        "ds-avatar": DsAvatar;
         "ds-button": DsButton;
+        "ds-checkbox": DsCheckbox;
         "ds-checkbox-group": DsCheckboxGroup;
+        "ds-dropdown": DsDropdown;
+        "ds-dropdown-item": DsDropdownItem;
         "ds-input": DsInput;
+        "ds-menu-item": DsMenuItem;
+        "ds-menu-item-content": DsMenuItemContent;
         "ds-radio-group": DsRadioGroup;
         "ds-select": DsSelect;
         "ds-textarea": DsTextarea;
@@ -772,9 +1285,15 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "ds-avatar": LocalJSX.DsAvatar & JSXBase.HTMLAttributes<HTMLDsAvatarElement>;
             "ds-button": LocalJSX.DsButton & JSXBase.HTMLAttributes<HTMLDsButtonElement>;
+            "ds-checkbox": LocalJSX.DsCheckbox & JSXBase.HTMLAttributes<HTMLDsCheckboxElement>;
             "ds-checkbox-group": LocalJSX.DsCheckboxGroup & JSXBase.HTMLAttributes<HTMLDsCheckboxGroupElement>;
+            "ds-dropdown": LocalJSX.DsDropdown & JSXBase.HTMLAttributes<HTMLDsDropdownElement>;
+            "ds-dropdown-item": LocalJSX.DsDropdownItem & JSXBase.HTMLAttributes<HTMLDsDropdownItemElement>;
             "ds-input": LocalJSX.DsInput & JSXBase.HTMLAttributes<HTMLDsInputElement>;
+            "ds-menu-item": LocalJSX.DsMenuItem & JSXBase.HTMLAttributes<HTMLDsMenuItemElement>;
+            "ds-menu-item-content": LocalJSX.DsMenuItemContent & JSXBase.HTMLAttributes<HTMLDsMenuItemContentElement>;
             "ds-radio-group": LocalJSX.DsRadioGroup & JSXBase.HTMLAttributes<HTMLDsRadioGroupElement>;
             "ds-select": LocalJSX.DsSelect & JSXBase.HTMLAttributes<HTMLDsSelectElement>;
             "ds-textarea": LocalJSX.DsTextarea & JSXBase.HTMLAttributes<HTMLDsTextareaElement>;

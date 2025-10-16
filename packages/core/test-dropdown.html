@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste Dropdown</title>
+    <style>
+        body {
+            font-family: 'Lato', sans-serif;
+            margin: 20px;
+            background-color: #f8f9fa;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #0b1215;
+            margin-bottom: 30px;
+        }
+        .example {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            background: #f8f9fa;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Teste dos Componentes Dropdown</h1>
+        
+        <div class="example">
+            <h3>Dropdown Básico</h3>
+            <ds-dropdown name="cidade" label="Selecione uma cidade">
+                <ds-dropdown-item>
+                    <ds-menu-item value="sp" index="0">
+                        <ds-menu-item-content item-title="São Paulo" />
+                    </ds-menu-item>
+                    <ds-menu-item value="rj" index="1">
+                        <ds-menu-item-content item-title="Rio de Janeiro" />
+                    </ds-menu-item>
+                    <ds-menu-item value="bh" index="2">
+                        <ds-menu-item-content item-title="Belo Horizonte" />
+                    </ds-menu-item>
+                </ds-dropdown-item>
+            </ds-dropdown>
+        </div>
+        
+        <div class="example">
+            <h3>Dropdown com Busca</h3>
+            <ds-dropdown name="pais" label="Selecione um país" searchable>
+                <ds-dropdown-item>
+                    <ds-menu-item value="br" index="0">
+                        <ds-menu-item-content item-title="Brasil" subtitle="América do Sul" />
+                    </ds-menu-item>
+                    <ds-menu-item value="us" index="1">
+                        <ds-menu-item-content item-title="Estados Unidos" subtitle="América do Norte" />
+                    </ds-menu-item>
+                    <ds-menu-item value="fr" index="2">
+                        <ds-menu-item-content item-title="França" subtitle="Europa" />
+                    </ds-menu-item>
+                </ds-dropdown-item>
+            </ds-dropdown>
+        </div>
+        
+        <div class="example">
+            <h3>Dropdown com Seta</h3>
+            <ds-dropdown name="opcao" label="Selecione uma opção" variant="bottom">
+                <ds-dropdown-item variant="bottom">
+                    <ds-menu-item value="1" index="0">
+                        <ds-menu-item-content item-title="Opção 1" />
+                    </ds-menu-item>
+                    <ds-menu-item value="2" index="1">
+                        <ds-menu-item-content item-title="Opção 2" />
+                    </ds-menu-item>
+                </ds-dropdown-item>
+            </ds-dropdown>
+        </div>
+    </div>
+    
+    <script type="module" src="./dist/esm/ds-base.js"></script>
+</body>
+</html>
+

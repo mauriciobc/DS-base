@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exemplos de Uso - ds-dropdown</title>
+    <style>
+        body {
+            font-family: 'Lato', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            color: #0b1215;
+            margin-bottom: 30px;
+        }
+        
+        h2 {
+            color: #495057;
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+        
+        .example {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            background: #f8f9fa;
+        }
+        
+        .example h3 {
+            margin-top: 0;
+            color: #0b1215;
+        }
+        
+        .code {
+            background: #f1f3f4;
+            padding: 15px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            margin-top: 15px;
+            overflow-x: auto;
+        }
+        
+        .demo-area {
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Exemplos de Uso - ds-dropdown</h1>
+        
+        <div class="example">
+            <h3>1. Dropdown Básico</h3>
+            <p>Exemplo simples com 3 opções de cidades.</p>
+            <div class="code">
+&lt;ds-dropdown name="cidade" label="Selecione uma cidade"&gt;
+  &lt;ds-dropdown-item&gt;
+    &lt;ds-menu-item value="sp" index="0"&gt;
+      &lt;ds-menu-item-content title="São Paulo" /&gt;
+    &lt;/ds-menu-item&gt;
+    &lt;ds-menu-item value="rj" index="1"&gt;
+      &lt;ds-menu-item-content title="Rio de Janeiro" /&gt;
+    &lt;/ds-menu-item&gt;
+    &lt;ds-menu-item value="bh" index="2"&gt;
+      &lt;ds-menu-item-content title="Belo Horizonte" /&gt;
+    &lt;/ds-menu-item&gt;
+  &lt;/ds-dropdown-item&gt;
+&lt;/ds-dropdown&gt;
+            </div>
+            <div class="demo-area">
+                <ds-dropdown name="cidade" label="Selecione uma cidade">
+                    <ds-dropdown-item>
+                        <ds-menu-item value="sp" index="0">
+                            <ds-menu-item-content title="São Paulo" />
+                        </ds-menu-item>
+                        <ds-menu-item value="rj" index="1">
+                            <ds-menu-item-content title="Rio de Janeiro" />
+                        </ds-menu-item>
+                        <ds-menu-item value="bh" index="2">
+                            <ds-menu-item-content title="Belo Horizonte" />
+                        </ds-menu-item>
+                    </ds-dropdown-item>
+                </ds-dropdown>
+            </div>
+        </div>
+        
+        <div class="example">
+            <h3>2. Dropdown com Busca</h3>
+            <p>Dropdown com funcionalidade de busca/filtro habilitada.</p>
+            <div class="code">
+&lt;ds-dropdown name="pais" label="Selecione um país" searchable&gt;
+  &lt;ds-dropdown-item&gt;
+    &lt;ds-menu-item value="br" index="0"&gt;
+      &lt;ds-menu-item-content title="Brasil" subtitle="América do Sul" /&gt;
+    &lt;/ds-menu-item&gt;
+    &lt;ds-menu-item value="us" index="1"&gt;
+      &lt;ds-menu-item-content title="Estados Unidos" subtitle="América do Norte" /&gt;
+    &lt;/ds-menu-item&gt;
+    &lt;ds-menu-item value="fr" index="2"&gt;
+      &lt;ds-menu-item-content title="França" subtitle="Europa" /&gt;
+    &lt;/ds-menu-item&gt;
+  &lt;/ds-dropdown-item&gt;
+&lt;/ds-dropdown&gt;
+            </div>
+            <div class="demo-area">
+                <ds-dropdown name="pais" label="Selecione um país" searchable>
+                    <ds-dropdown-item>
+                        <ds-menu-item value="br" index="0">
+                            <ds-menu-item-content title="Brasil" subtitle="América do Sul" />
+                        </ds-menu-item>
+                        <ds-menu-item value="us" index="1">
+                            <ds-menu-item-content title="Estados Unidos" subtitle="América do Norte" />
+                        </ds-menu-item>
+                        <ds-menu-item value="fr" index="2">
+                            <ds-menu-item-content title="França" subtitle="Europa" />
+                        </ds-menu-item>
+                    </ds-dropdown-item>
+                </ds-dropdown>
+            </div>
+        </div>
+        
+        <div class="example">
+            <h3>3. Seleção Múltipla</h3>
+            <p>Dropdown que permite selecionar múltiplas opções.</p>
+            <div class="code">
+&lt;ds-dropdown name="hobbies" label="Selecione seus hobbies" multiple&gt;
+  &lt;ds-dropdown-item&gt;
+    &lt;ds-menu-item value="futebol" index="0"&gt;
+      &lt;ds-menu-item-content title="Futebol" /&gt;
+    &lt;/ds-menu-item&gt;
+    &lt;ds-menu-item value="basquete" index="1"&gt;
+      &lt;ds-menu-item-content title="Basquete" /&gt;
+    &lt;/ds-menu-item&gt;
+    &lt;ds-menu-item value="tenis" index="2"&gt;
+      &lt;ds-menu-item-content title="Tênis" /&gt;
+    &lt;/ds-menu-item&gt;
+  &lt;/ds-dropdown-item&gt;
+&lt;/ds-dropdown&gt;
+            </div>
+            <div class="demo-area">
+                <ds-dropdown name="hobbies" label="Selecione seus hobbies" multiple>
+                    <ds-dropdown-item>
+                        <ds-menu-item value="futebol" index="0">
+                            <ds-menu-item-content title="Futebol" />
+                        </ds-menu-item>
+                        <ds-menu-item value="basquete" index="1">
+                            <ds-menu-item-content title="Basquete" />
+                        </ds-menu-item>
+                        <ds-menu-item value="tenis" index="2">
+                            <ds-menu-item-content title="Tênis" />
+                        </ds-menu-item>
+                    </ds-dropdown-item>
+                </ds-dropdown>
+            </div>
+        </div>
+        
+        <div class="example">
+            <h3>4. Dropdown com Seta</h3>
+            <p>Dropdown com seta indicativa na base.</p>
+            <div class="code">
+&lt;ds-dropdown name="opcao" label="Selecione uma opção" variant="bottom"&gt;
+  &lt;ds-dropdown-item variant="bottom"&gt;
+    &lt;ds-menu-item value="1" index="0"&gt;
+      &lt;ds-menu-item-content title="Opção 1" /&gt;
+    &lt;/ds-menu-item&gt;
+    &lt;ds-menu-item value="2" index="1"&gt;
+      &lt;ds-menu-item-content title="Opção 2" /&gt;
+    &lt;/ds-menu-item&gt;
+  &lt;/ds-dropdown-item&gt;
+&lt;/ds-dropdown&gt;
+            </div>
+            <div class="demo-area">
+                <ds-dropdown name="opcao" label="Selecione uma opção" variant="bottom">
+                    <ds-dropdown-item variant="bottom">
+                        <ds-menu-item value="1" index="0">
+                            <ds-menu-item-content title="Opção 1" />
+                        </ds-menu-item>
+                        <ds-menu-item value="2" index="1">
+                            <ds-menu-item-content title="Opção 2" />
+                        </ds-menu-item>
+                    </ds-dropdown-item>
+                </ds-dropdown>
+            </div>
+        </div>
+        
+        <div class="example">
+            <h3>5. Conteúdo Complexo</h3>
+            <p>Dropdown com informações detalhadas dos usuários.</p>
+            <div class="code">
+&lt;ds-dropdown name="usuario" label="Selecione um usuário"&gt;
+  &lt;ds-dropdown-item&gt;
+    &lt;ds-menu-item value="joao" index="0"&gt;
+      &lt;ds-menu-item-content 
+        title="João Silva" 
+        subtitle="Desenvolvedor Senior"
+        overline="Equipe de Desenvolvimento"
+      /&gt;
+    &lt;/ds-menu-item&gt;
+    &lt;ds-menu-item value="maria" index="1"&gt;
+      &lt;ds-menu-item-content 
+        title="Maria Santos" 
+        subtitle="Designer UX/UI"
+        overline="Equipe de Design"
+      /&gt;
+    &lt;/ds-menu-item&gt;
+  &lt;/ds-dropdown-item&gt;
+&lt;/ds-dropdown&gt;
+            </div>
+            <div class="demo-area">
+                <ds-dropdown name="usuario" label="Selecione um usuário">
+                    <ds-dropdown-item>
+                        <ds-menu-item value="joao" index="0">
+                            <ds-menu-item-content 
+                                title="João Silva" 
+                                subtitle="Desenvolvedor Senior"
+                                overline="Equipe de Desenvolvimento"
+                            />
+                        </ds-menu-item>
+                        <ds-menu-item value="maria" index="1">
+                            <ds-menu-item-content 
+                                title="Maria Santos" 
+                                subtitle="Designer UX/UI"
+                                overline="Equipe de Design"
+                            />
+                        </ds-menu-item>
+                    </ds-dropdown-item>
+                </ds-dropdown>
+            </div>
+        </div>
+        
+        <div class="example">
+            <h3>6. Estados de Validação</h3>
+            <p>Dropdown com texto de ajuda e estado de erro.</p>
+            <div class="code">
+&lt;!-- Com texto de ajuda --&gt;
+&lt;ds-dropdown name="categoria" label="Categoria" help-text="Selecione uma categoria da lista"&gt;
+  &lt;ds-dropdown-item&gt;
+    &lt;ds-menu-item value="cat1" index="0"&gt;
+      &lt;ds-menu-item-content title="Categoria 1" /&gt;
+    &lt;/ds-menu-item&gt;
+    &lt;ds-menu-item value="cat2" index="1"&gt;
+      &lt;ds-menu-item-content title="Categoria 2" /&gt;
+    &lt;/ds-menu-item&gt;
+  &lt;/ds-dropdown-item&gt;
+&lt;/ds-dropdown&gt;
+
+&lt;!-- Com erro --&gt;
+&lt;ds-dropdown name="obrigatorio" label="Campo Obrigatório" required error-text="Este campo é obrigatório"&gt;
+  &lt;ds-dropdown-item&gt;
+    &lt;ds-menu-item value="opt1" index="0"&gt;
+      &lt;ds-menu-item-content title="Opção 1" /&gt;
+    &lt;/ds-menu-item&gt;
+    &lt;ds-menu-item value="opt2" index="1"&gt;
+      &lt;ds-menu-item-content title="Opção 2" /&gt;
+    &lt;/ds-menu-item&gt;
+  &lt;/ds-dropdown-item&gt;
+&lt;/ds-dropdown&gt;
+            </div>
+            <div class="demo-area">
+                <ds-dropdown name="categoria" label="Categoria" help-text="Selecione uma categoria da lista">
+                    <ds-dropdown-item>
+                        <ds-menu-item value="cat1" index="0">
+                            <ds-menu-item-content title="Categoria 1" />
+                        </ds-menu-item>
+                        <ds-menu-item value="cat2" index="1">
+                            <ds-menu-item-content title="Categoria 2" />
+                        </ds-menu-item>
+                    </ds-dropdown-item>
+                </ds-dropdown>
+                
+                <br><br>
+                
+                <ds-dropdown name="obrigatorio" label="Campo Obrigatório" required error-text="Este campo é obrigatório">
+                    <ds-dropdown-item>
+                        <ds-menu-item value="opt1" index="0">
+                            <ds-menu-item-content title="Opção 1" />
+                        </ds-menu-item>
+                        <ds-menu-item value="opt2" index="1">
+                            <ds-menu-item-content title="Opção 2" />
+                        </ds-menu-item>
+                    </ds-dropdown-item>
+                </ds-dropdown>
+            </div>
+        </div>
+    </div>
+    
+    <script type="module" src="/build/ds-base.esm.js"></script>
+    <script nomodule src="/build/ds-base.js"></script>
+</body>
+</html>

@@ -1,0 +1,120 @@
+/**
+ * Design Tokens - Variáveis CSS Globais
+ * 
+ * Este arquivo exporta todas as variáveis CSS dos design tokens
+ * para uso em componentes e estilos globais.
+ * 
+ * @packageDocumentation
+ */
+
+/* ===== SPACING ===== */
+:root {
+  --ds-spacing-xxs: 2px;
+  --ds-spacing-xs: 4px;
+  --ds-spacing-sm: 8px;
+  --ds-spacing-rg: 12px;
+  --ds-spacing-md: 16px;
+  --ds-spacing-lg: 24px;
+}
+
+/* ===== COLORS ===== */
+:root {
+  /* Text Colors */
+  --ds-color-text-primary: #0b1215;
+  --ds-color-text-secondary: #495057;
+  --ds-color-text-placeholder: #9f9fa8;
+  --ds-color-text-disabled: rgba(11, 18, 21, 0.25);
+
+  /* Brand Colors */
+  --ds-color-brand-base: #0064cb;
+  --ds-color-brand-base25: rgba(0, 100, 203, 0.25);
+  --ds-color-brand-base50: rgba(0, 100, 203, 0.5);
+
+  /* Structure Colors */
+  --ds-color-structure-bg-base: #ffffff;
+  --ds-color-structure-bg-base-disabled: rgba(255, 255, 255, 0.25);
+  --ds-color-structure-border-color: #adb5bd;
+  --ds-color-structure-border-color-secondary: #dee2e6;
+
+  /* Semantic Colors */
+  --ds-color-semantic-success: #109e7c;
+  --ds-color-semantic-error: #e51937;
+  --ds-color-semantic-warning: #ff9900;
+  --ds-color-semantic-error25: rgba(229, 25, 55, 0.25);
+
+  /* Gray Palette */
+  --ds-color-gray-0: #f8f9fa;
+  --ds-color-gray-1: #f1f3f5;
+  --ds-color-gray-2: #e9ecef;
+  --ds-color-gray-3: #dee2e6;
+  --ds-color-gray-4: #ced4da;
+  --ds-color-gray-5: #adb5bd;
+  --ds-color-gray-6: #868e96;
+  --ds-color-gray-7: #495057;
+  --ds-color-gray-8: #343a40;
+  --ds-color-gray-9: #212529;
+}
+
+/* ===== TYPOGRAPHY ===== */
+:root {
+  /* Font Families */
+  --ds-font-family-sans: 'Lato', sans-serif;
+
+  /* Font Sizes */
+  --ds-font-size-scale1: 64px;
+  --ds-font-size-scale2: 40px;
+  --ds-font-size-scale3: 32px;
+  --ds-font-size-scale4: 24px;
+  --ds-font-size-scale5: 20px;
+  --ds-font-size-scale6: 16px;
+  --ds-font-size-scale7: 14px;
+  --ds-font-size-scale8: 12px;
+  --ds-font-size-scale9: 11px;
+  --ds-font-size-scale10: 10px;
+
+  /* Line Heights */
+  --ds-line-height-scale1: 80px;
+  --ds-line-height-scale2: 48px;
+  --ds-line-height-scale3: 40px;
+  --ds-line-height-scale4: 32px;
+  --ds-line-height-scale5: 32px;
+  --ds-line-height-scale6: 24px;
+  --ds-line-height-scale7: 16px;
+  --ds-line-height-scale8: 16px;
+  --ds-line-height-scale9: 16px;
+  --ds-line-height-scale10: 16px;
+
+  /* Font Weights */
+  --ds-font-weight-regular: 400;
+  --ds-font-weight-medium: 500;
+  --ds-font-weight-semibold: 600;
+  --ds-font-weight-bold: 700;
+}
+
+/* ===== BORDER RADIUS ===== */
+:root {
+  --ds-radius-xs: 4px;
+  --ds-radius-sm: 8px;
+  --ds-radius-md: 12px;
+  --ds-radius-lg: 16px;
+}
+
+/* ===== SHADOWS ===== */
+:root {
+  --ds-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.12);
+  --ds-shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);
+  --ds-shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+  --ds-shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.1);
+  --ds-shadow-popover: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* ===== DROPDOWN SPECIFIC ===== */
+:root {
+  --ds-dropdown-item-height: 46px;
+  --ds-dropdown-item-gap: 2px;
+  --ds-dropdown-arrow-width: 24px;
+  --ds-dropdown-arrow-height: 12px;
+  --ds-dropdown-card-radius: 16px;
+  --ds-dropdown-trigger-radius: 8px;
+}
+

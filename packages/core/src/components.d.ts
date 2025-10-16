@@ -66,6 +66,11 @@ export namespace Components {
     }
     interface DsCheckbox {
         /**
+          * Alternative text for accessibility when no visible label is present
+          * @default ''
+         */
+        "ariaLabel": string;
+        /**
           * The checkbox checked state
           * @default false
          */
@@ -771,6 +776,11 @@ declare namespace LocalJSX {
         "variant"?: 'primary' | 'secondary' | 'tertiary';
     }
     interface DsCheckbox {
+        /**
+          * Alternative text for accessibility when no visible label is present
+          * @default ''
+         */
+        "ariaLabel"?: string;
         /**
           * The checkbox checked state
           * @default false

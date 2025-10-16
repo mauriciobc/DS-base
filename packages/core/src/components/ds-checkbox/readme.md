@@ -9,6 +9,7 @@ Um componente de checkbox acessível e responsivo com suporte completo a estados
 - ✅ **Acessibilidade**: suporte completo a ARIA e navegação por teclado
 - ✅ **Design system**: cores e estilos baseados nos tokens de design
 - ✅ **Eventos customizados**: dsChange, dsFocus, dsBlur
+- ✅ **Validação de acessibilidade**: warning automático quando nenhum nome acessível é fornecido
 
 ## Estados Visuais
 
@@ -21,6 +22,25 @@ O componente suporta os seguintes estados visuais:
 - **Checked**: Quando o checkbox está marcado
 - **Indeterminate**: Estado intermediário (útil para "selecionar todos")
 - **Disabled**: Quando o checkbox está desabilitado
+
+## Acessibilidade
+
+O componente `ds-checkbox` garante acessibilidade completa seguindo as diretrizes WCAG:
+
+### Nome Acessível
+- **Com label visível**: Use a prop `label` quando o checkbox deve ter um texto visível
+- **Sem label visível**: Use a prop `ariaLabel` quando o checkbox não precisa de texto visível (ex: checkboxes em tabelas)
+- **Validação**: O componente emite um warning no console quando nenhuma das props é fornecida
+
+### Atributos ARIA
+- `aria-checked`: Indica o estado atual (true/false/mixed)
+- `aria-label`: Nome acessível quando não há label visível
+- `aria-hidden="true"`: Aplicado ao elemento visual decorativo
+
+### Navegação por Teclado
+- **Tab**: Navega para o próximo elemento
+- **Espaço**: Marca/desmarca o checkbox
+- **Enter**: Marca/desmarca o checkbox
 
 ## Exemplo de Uso
 
@@ -36,6 +56,9 @@ O componente suporta os seguintes estados visuais:
 
 <!-- Checkbox desabilitado -->
 <ds-checkbox label="Desabilitado" disabled></ds-checkbox>
+
+<!-- Checkbox sem label visível (usando ariaLabel) -->
+<ds-checkbox ariaLabel="Aceitar política de privacidade"></ds-checkbox>
 ```
 
 <!-- Auto Generated Below -->
@@ -43,15 +66,16 @@ O componente suporta os seguintes estados visuais:
 
 ## Properties
 
-| Property        | Attribute       | Description                                     | Type      | Default |
-| --------------- | --------------- | ----------------------------------------------- | --------- | ------- |
-| `checked`       | `checked`       | The checkbox checked state                      | `boolean` | `false` |
-| `disabled`      | `disabled`      | If true, the checkbox is disabled               | `boolean` | `false` |
-| `indeterminate` | `indeterminate` | If true, the checkbox is in indeterminate state | `boolean` | `false` |
-| `label`         | `label`         | The checkbox label text                         | `string`  | `''`    |
-| `name`          | `name`          | The checkbox name for grouping                  | `string`  | `''`    |
-| `required`      | `required`      | If true, the checkbox is required               | `boolean` | `false` |
-| `value`         | `value`         | The checkbox value for forms                    | `string`  | `''`    |
+| Property        | Attribute       | Description                                                         | Type      | Default |
+| --------------- | --------------- | ------------------------------------------------------------------- | --------- | ------- |
+| `ariaLabel`     | `aria-label`    | Alternative text for accessibility when no visible label is present | `string`  | `''`    |
+| `checked`       | `checked`       | The checkbox checked state                                          | `boolean` | `false` |
+| `disabled`      | `disabled`      | If true, the checkbox is disabled                                   | `boolean` | `false` |
+| `indeterminate` | `indeterminate` | If true, the checkbox is in indeterminate state                     | `boolean` | `false` |
+| `label`         | `label`         | The checkbox label text                                             | `string`  | `''`    |
+| `name`          | `name`          | The checkbox name for grouping                                      | `string`  | `''`    |
+| `required`      | `required`      | If true, the checkbox is required                                   | `boolean` | `false` |
+| `value`         | `value`         | The checkbox value for forms                                        | `string`  | `''`    |
 
 
 ## Events

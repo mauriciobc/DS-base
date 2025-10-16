@@ -52,14 +52,14 @@ export declare interface DsButton extends Components.DsButton {}
 
 
 @ProxyCmp({
-  inputs: ['checked', 'disabled', 'indeterminate', 'label', 'name', 'required', 'value']
+  inputs: ['ariaLabel', 'checked', 'disabled', 'indeterminate', 'label', 'name', 'required', 'value']
 })
 @Component({
   selector: 'ds-checkbox',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['checked', 'disabled', 'indeterminate', 'label', 'name', 'required', 'value'],
+  inputs: ['ariaLabel', 'checked', 'disabled', 'indeterminate', 'label', 'name', 'required', 'value'],
 })
 export class DsCheckbox {
   protected el: HTMLElement;

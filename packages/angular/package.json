@@ -12,7 +12,7 @@
     "@angular/core": ">=17.0.0"
   },
   "dependencies": {
-    "@ds-base/core": "^1.0.0"
+    "@ds-base/core": "*"
   },
   "devDependencies": {
     "@angular/common": "^18.0.0",

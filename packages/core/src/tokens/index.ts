@@ -201,6 +201,7 @@ export {
   assetConfigs,
   getAssetConfig,
   getAssetConfigFromEnv,
+  getCurrentAssets,
   currentAssets,
   default as assets,
 } from './assets';

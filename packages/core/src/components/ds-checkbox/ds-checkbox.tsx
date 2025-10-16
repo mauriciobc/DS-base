@@ -29,6 +29,11 @@ export class DsCheckbox {
   @Prop() label: string = '';
 
   /**
+   * Alternative text for accessibility when no visible label is present
+   */
+  @Prop() ariaLabel: string = '';
+
+  /**
    * If true, the checkbox is disabled
    */
   @Prop({ reflect: true }) disabled: boolean = false;
@@ -81,6 +86,15 @@ export class DsCheckbox {
     if (this.inputRef && this.indeterminate) {
       this.inputRef.indeterminate = true;
     }
+
+    // Validar acessibilidade - garantir que sempre há um nome acessível
+    if (!this.label && !this.ariaLabel) {
+      console.warn(
+        `[ds-checkbox] Componente checkbox sem nome acessível detectado. ` +
+        `Forneça uma prop 'label' (para label visível) ou 'ariaLabel' (para label apenas para screen readers) ` +
+        `para garantir acessibilidade adequada.`
+      );
+    }
   }
 
   private handleInput = (event: Event) => {
@@ -123,7 +137,7 @@ export class DsCheckbox {
               checked={this.checked}
               disabled={this.disabled}
               required={this.required}
-              aria-label={this.label ? undefined : this.label}
+              aria-label={this.label ? undefined : this.ariaLabel}
               aria-checked={this.indeterminate ? 'mixed' : this.checked.toString()}
               onInput={this.handleInput}
               onFocus={this.handleFocus}

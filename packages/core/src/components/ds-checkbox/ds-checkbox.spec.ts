@@ -177,7 +177,6 @@ describe('ds-checkbox', () => {
       html: `<ds-checkbox></ds-checkbox>`,
     });
     const input = page.root?.shadowRoot?.querySelector('input') as HTMLInputElement;
-    const box = page.root?.shadowRoot?.querySelector('.ds-checkbox__box') as HTMLElement;
     
     // Simular o estado ativo
     input.dispatchEvent(new MouseEvent('mousedown'));

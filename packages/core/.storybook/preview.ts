@@ -12,10 +12,12 @@ const preview: Preview = {
   },
   decorators: [
     (story) => {
-      // Importar os componentes Stencil dinamicamente e aguardar o carregamento
+      // Importar os componentes Stencil dinamicamente
       import('../dist/esm/ds-base.js').then(() => {
-        // Componentes carregados
+        // Componentes carregados, mas não precisamos aguardar
+        console.log('DS Base components loaded');
       });
+      // Retornar a story imediatamente (síncrono)
       return story();
     },
   ],

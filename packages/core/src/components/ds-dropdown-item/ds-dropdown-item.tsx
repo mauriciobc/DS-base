@@ -1,5 +1,5 @@
 import { Component, Prop, h, Host } from '@stencil/core';
-import { currentAssets } from '../../tokens/assets';
+import { getCurrentAssets } from '../../tokens/assets';
 
 @Component({
   tag: 'ds-dropdown-item',
@@ -40,14 +40,14 @@ export class DsDropdownItem {
    * Obtém o caminho da seta para cima (propriedade ou padrão)
    */
   get resolvedArrowUpPath(): string {
-    return this.arrowUpPath || currentAssets.icons.arrowUp;
+    return this.arrowUpPath || getCurrentAssets().icons.arrowUp;
   }
 
   /**
    * Obtém o caminho da seta para baixo (propriedade ou padrão)
    */
   get resolvedArrowDownPath(): string {
-    return this.arrowDownPath || currentAssets.icons.arrowDown;
+    return this.arrowDownPath || getCurrentAssets().icons.arrowDown;
   }
 
   render() {

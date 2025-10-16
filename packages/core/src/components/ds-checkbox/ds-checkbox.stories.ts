@@ -34,6 +34,10 @@ const meta: Meta = {
       control: 'text',
       description: 'Nome do checkbox para agrupamento'
     },
+    ariaLabel: { 
+      control: 'text',
+      description: 'Texto alternativo para acessibilidade quando não há label visível'
+    },
   },
   parameters: {
     docs: {
@@ -134,12 +138,61 @@ export const WithoutLabel: Story = {
   args: {
     value: 'option1',
     name: 'options',
+    ariaLabel: 'Select option 1',
   },
   render: Default.render,
   parameters: {
     docs: {
       description: {
-        story: 'Checkbox sem label - útil quando a label é fornecida externamente.'
+        story: 'Checkbox sem label visível usando ariaLabel para acessibilidade.'
+      }
+    }
+  }
+};
+
+export const AccessibilityExample: Story = {
+  render: () => html`
+    <div>
+      <h3>Exemplos de Acessibilidade</h3>
+      
+      <h4>Com label visível:</h4>
+      <ds-checkbox label="Aceitar termos e condições" name="terms"></ds-checkbox>
+      
+      <h4>Sem label visível (usando ariaLabel):</h4>
+      <ds-checkbox ariaLabel="Aceitar política de privacidade" name="privacy"></ds-checkbox>
+      
+      <h4>Em uma tabela:</h4>
+      <table style="border-collapse: collapse; width: 100%;">
+        <thead>
+          <tr>
+            <th style="border: 1px solid #ccc; padding: 8px;">Selecionar</th>
+            <th style="border: 1px solid #ccc; padding: 8px;">Nome</th>
+            <th style="border: 1px solid #ccc; padding: 8px;">Email</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="border: 1px solid #ccc; padding: 8px;">
+              <ds-checkbox ariaLabel="Selecionar usuário João Silva" name="users" value="joao"></ds-checkbox>
+            </td>
+            <td style="border: 1px solid #ccc; padding: 8px;">João Silva</td>
+            <td style="border: 1px solid #ccc; padding: 8px;">joao@email.com</td>
+          </tr>
+          <tr>
+            <td style="border: 1px solid #ccc; padding: 8px;">
+              <ds-checkbox ariaLabel="Selecionar usuária Maria Santos" name="users" value="maria"></ds-checkbox>
+            </td>
+            <td style="border: 1px solid #ccc; padding: 8px;">Maria Santos</td>
+            <td style="border: 1px solid #ccc; padding: 8px;">maria@email.com</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  `,
+  parameters: {
+    docs: {
+      description: {
+        story: 'Exemplos mostrando como usar label visível vs ariaLabel para diferentes contextos de acessibilidade.'
       }
     }
   }
@@ -165,13 +218,36 @@ export const InsideGroup: Story = {
 
 export const SelectAllExample: Story = {
   render: () => {
+    const updateSelectAllState = (container: HTMLElement) => {
+      const selectAll = container.querySelector('#select-all') as HTMLDsCheckboxElement;
+      const checkboxes = Array.from(container.querySelectorAll('ds-checkbox:not(#select-all)')) as HTMLDsCheckboxElement[];
+      const checkedCount = checkboxes.filter(cb => cb.checked).length;
+      
+      if (checkedCount === 0) {
+        selectAll.checked = false;
+        selectAll.indeterminate = false;
+      } else if (checkedCount === checkboxes.length) {
+        selectAll.checked = true;
+        selectAll.indeterminate = false;
+      } else {
+        selectAll.checked = false;
+        selectAll.indeterminate = true;
+      }
+    };
+
     const handleSelectAllChange = (e: CustomEvent<boolean>) => {
-      const checkboxes = document.querySelectorAll('ds-checkbox:not(#select-all)');
+      const container = (e.target as HTMLElement).closest('div') as HTMLElement;
+      const checkboxes = container.querySelectorAll('ds-checkbox:not(#select-all)');
       checkboxes.forEach((cb) => {
         const checkbox = cb as HTMLDsCheckboxElement;
         checkbox.checked = e.detail;
         checkbox.indeterminate = false;
       });
+    };
+
+    const handleChildChange = (e: CustomEvent<boolean>) => {
+      const container = (e.target as HTMLElement).closest('div') as HTMLElement;
+      updateSelectAllState(container);
     };
 
     return html`
@@ -180,14 +256,13 @@ export const SelectAllExample: Story = {
           id="select-all" 
           label="Select all" 
           name="select-all"
-          ?indeterminate=${true}
           @dsChange=${handleSelectAllChange}
         ></ds-checkbox>
         
         <div style="margin-top: 16px; margin-left: 24px;">
-          <ds-checkbox value="option1" label="Option 1" name="options"></ds-checkbox>
-          <ds-checkbox value="option2" label="Option 2" name="options"></ds-checkbox>
-          <ds-checkbox value="option3" label="Option 3" name="options"></ds-checkbox>
+          <ds-checkbox value="option1" label="Option 1" name="options" @dsChange=${handleChildChange}></ds-checkbox>
+          <ds-checkbox value="option2" label="Option 2" name="options" @dsChange=${handleChildChange}></ds-checkbox>
+          <ds-checkbox value="option3" label="Option 3" name="options" @dsChange=${handleChildChange}></ds-checkbox>
         </div>
       </div>
     `;

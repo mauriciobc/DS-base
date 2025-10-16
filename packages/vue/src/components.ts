@@ -34,6 +34,7 @@ export const DsCheckbox = /*@__PURE__*/ defineContainer<JSX.DsCheckbox>('ds-chec
   'value',
   'name',
   'label',
+  'ariaLabel',
   'disabled',
   'required',
   'indeterminate',

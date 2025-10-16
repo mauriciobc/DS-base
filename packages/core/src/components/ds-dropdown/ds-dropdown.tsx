@@ -252,6 +252,9 @@ export class DsDropdown {
   handleMenuItemSelect(event: CustomEvent) {
     const { value } = event.detail;
     
+    // Preservar o valor anterior antes de fazer qualquer mutação
+    const oldValue = this.value;
+    
     if (this.multiple) {
       // Modo múltipla seleção - toggle do estado atual
       if (Array.isArray(this.value)) {
@@ -272,7 +275,7 @@ export class DsDropdown {
     }
     
     // Emitir evento de mudança apenas se o valor realmente mudou
-    this.emitChangeIfValueChanged(this.value);
+    this.emitChangeIfValueChanged(oldValue, this.value);
     
     // Atualizar estado dos itens selecionados
     this.updateSelectedItems();
@@ -377,11 +380,11 @@ export class DsDropdown {
   /**
    * Emite o evento dsChange apenas se o valor realmente mudou
    */
-  private emitChangeIfValueChanged(newValue: any) {
+  private emitChangeIfValueChanged(oldValue: any, newValue: any) {
     // Verificar se o valor realmente mudou para evitar emissões duplicadas
     const hasChanged = this.multiple 
-      ? !this.arraysEqual(this.value as string[], newValue as string[])
-      : this.value !== newValue;
+      ? !this.arraysEqual(oldValue as string[], newValue as string[])
+      : oldValue !== newValue;
     
     if (hasChanged) {
       this.dsChange.emit(newValue);

@@ -4,6 +4,32 @@
  * Este módulo define os caminhos para todos os assets do design system,
  * permitindo configuração centralizada para diferentes ambientes (dev/staging/CDN).
  * 
+ * ## Uso de Configuração de Assets
+ * 
+ * ### Para Configuração em Tempo de Execução (Recomendado)
+ * Use `getCurrentAssets()` quando você precisar de configuração fresca baseada no ambiente atual:
+ * - Em componentes que podem ser renderizados em diferentes ambientes
+ * - Durante testes onde o ambiente pode mudar
+ * - Em aplicações que mudam de ambiente dinamicamente
+ * 
+ * ```typescript
+ * import { getCurrentAssets } from './tokens/assets';
+ * 
+ * const assets = getCurrentAssets(); // Sempre retorna configuração atual
+ * ```
+ * 
+ * ### Para Configuração Estática (Compatibilidade)
+ * Use `currentAssets` apenas quando você tem certeza de que o ambiente não mudará:
+ * - Em configurações de build estático
+ * - Quando a performance é crítica e você quer evitar chamadas de função
+ * - Para compatibilidade com código legado
+ * 
+ * ```typescript
+ * import { currentAssets } from './tokens/assets';
+ * 
+ * const assets = currentAssets; // Configuração fixa no momento da importação
+ * ```
+ * 
  * @packageDocumentation
  */
 
@@ -41,12 +67,32 @@ export const assetConfigs = {
 /**
  * Tipo para configuração de assets
  */
-export type AssetConfig = typeof defaultAssets;
+export type AssetConfig = {
+  icons: {
+    arrowUp: string;
+    arrowDown: string;
+  };
+};
 
 /**
  * Tipo para ambiente de deploy
  */
 export type Environment = keyof typeof assetConfigs;
+
+/**
+ * Valores válidos de ambiente
+ */
+const VALID_ENVIRONMENTS: readonly Environment[] = Object.keys(assetConfigs) as Environment[];
+
+/**
+ * Type guard para verificar se uma string é um Environment válido
+ * 
+ * @param value - Valor a ser verificado
+ * @returns true se o valor é um Environment válido
+ */
+function isValidEnvironment(value: string | undefined): value is Environment {
+  return value !== undefined && VALID_ENVIRONMENTS.includes(value as Environment);
+}
 
 /**
  * Função para obter configuração de assets baseada no ambiente
@@ -80,16 +126,43 @@ export function getAssetConfig(environment: Environment = 'development'): AssetC
  * ```
  */
 export function getAssetConfigFromEnv(): AssetConfig {
-  const env = (process?.env?.NODE_ENV as Environment) || 'development';
+  const nodeEnv = process?.env?.NODE_ENV;
+  const env = isValidEnvironment(nodeEnv) ? nodeEnv : 'development';
   return getAssetConfig(env);
 }
 
 /**
- * Configuração atual de assets (baseada no ambiente)
+ * Função getter para obter configuração atual de assets
+ * 
+ * Esta função retorna uma configuração fresca baseada no ambiente atual,
+ * permitindo variabilidade em tempo de execução e durante testes.
+ * 
+ * @returns Configuração de assets baseada no ambiente atual
+ * 
+ * @example
+ * ```typescript
+ * import { getCurrentAssets } from './tokens/assets';
+ * 
+ * const assets = getCurrentAssets();
+ * // Sempre retorna configuração atual baseada em process.env.NODE_ENV
+ * ```
+ */
+export function getCurrentAssets(): AssetConfig {
+  return getAssetConfigFromEnv();
+}
+
+/**
+ * Configuração atual de assets (baseada no ambiente no momento da importação)
+ * 
+ * @deprecated Use getCurrentAssets() para obter configuração fresca em tempo de execução.
+ * Esta constante é avaliada no momento da importação e pode não refletir mudanças
+ * nas variáveis de ambiente durante a execução.
  */
 export const currentAssets = getAssetConfigFromEnv();
 
 /**
  * Exporta a configuração atual como padrão
+ * 
+ * @deprecated Use getCurrentAssets() para obter configuração fresca em tempo de execução.
  */
 export default currentAssets;
